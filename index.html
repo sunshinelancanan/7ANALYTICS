@@ -6,6 +6,7 @@
 <title>Sunshine Lancanan — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <style>
   :root {
     --sky: #38bdf8;
@@ -278,6 +279,42 @@
     background: linear-gradient(135deg, var(--navy3) 0%, rgba(14,165,233,0.2) 100%);
     display: flex; align-items: center; gap: 1rem;
     border-bottom: 1px solid var(--border);
+  .folder-preview-img {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .folder-preview-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) saturate(1.1);
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+  .folder-card:hover .folder-preview-img img {
+    transform: scale(1.04);
+    filter: brightness(1) saturate(1.2);
+  }
+  }
+  .folder-preview-img {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .folder-preview-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) saturate(1.1);
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+  .folder-card:hover .folder-preview-img img {
+    transform: scale(1.04);
+    filter: brightness(1) saturate(1.2);
   }
   .folder-icon {
     width: 44px; height: 44px;
@@ -501,7 +538,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">SL/</div>
+  <div class="nav-logo">SML \*.*/</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#activities">Activities</a></li>
@@ -513,11 +550,10 @@
 <section id="hero">
   <canvas id="three-canvas"></canvas>
   <div class="hero-content">
-    <p class="hero-eyebrow">— Portfolio 2025 —</p>
-    <h1 class="hero-name">SUNSHINE<br>LANCANAN</h1>
+    <p class="hero-eyebrow">— Data Analytics Portfolio —</p>
+    <h1 class="hero-name">SUNSHINE<br>MANALO<br>LANCANAN</h1>
     <p class="hero-tagline">Computer Science Student</p>
     <div class="hero-badges">
-      <span class="badge">💻 Programmer</span>
       <span class="badge">🎓 CS Student</span>
       <span class="badge">🇵🇭 Philippines</span>
       <span class="badge">🌱 Always Learning</span>
@@ -546,7 +582,7 @@
     <div class="about-grid">
       <div class="about-img-wrap reveal">
         <div class="about-img-card" style="position:relative;">
-          <img src="" alt="Programming">
+          <img src="bonak.jpg" alt="Programming">
           <div class="about-photo-overlay"></div>
         </div>
       </div>
@@ -601,6 +637,10 @@
             <div class="folder-subtitle">Tasks 2, 3 & 4</div>
           </div>
         </div>
+        <!-- Folder preview image -->
+        <div class="folder-preview-img">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Practice Tasks Preview">
+        </div>
         <div class="task-list">
           <div class="task-btn" onclick="openModal('pt2')">
             <div class="task-num">P2</div>
@@ -638,6 +678,10 @@
             <div class="folder-subtitle">Tasks 1 & 2</div>
           </div>
         </div>
+        <!-- Folder preview image -->
+        <div class="folder-preview-img">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Midterm Tasks Preview">
+        </div>
         <div class="task-list">
           <div class="task-btn" onclick="openModal('mt1')">
             <div class="task-num">M1</div>
@@ -672,7 +716,7 @@
         <p>Have a question or want to collaborate? Feel free to reach out — I'd love to hear from you!</p>
         <div class="contact-item">
           <div class="contact-icon">📧</div>
-          <span>sunshine@email.com</span>
+          <span>slancanan23-0095@cca.edu.ph</span>
         </div>
         <div class="contact-item">
           <div class="contact-icon">🇵🇭</div>
@@ -685,15 +729,16 @@
       </div>
       <div class="reveal">
         <div class="form-group">
-          <input type="text" placeholder="Your Name">
+          <input type="text" id="from_name" placeholder="Your Name" required>
         </div>
         <div class="form-group">
-          <input type="email" placeholder="Your Email">
+          <input type="email" id="from_email" placeholder="Your Email" required>
         </div>
         <div class="form-group">
-          <textarea placeholder="Your Message"></textarea>
+          <textarea id="message" placeholder="Your Message" required></textarea>
         </div>
-        <button class="btn">Send Message</button>
+        <button class="btn" onclick="sendEmail()">Send Message</button>
+        <p id="email-status" style="margin-top:1rem; font-size:0.9rem;"></p>
       </div>
     </div>
   </div>
@@ -701,17 +746,14 @@
 
 <!-- FOOTER -->
 <footer>
-  Built with 💙 by <span>Sunshine Lancanan</span> — Computer Science Student &nbsp;|&nbsp; © 2025
+  Built with 💙 by <span>Sunshine Lancanan</span> — Computer Science Student &nbsp;|&nbsp; © 2026
 </footer>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal-box">
-    <img id="modal-img" class="modal-img" src="" alt="">
     <div class="modal-body">
-      <span class="modal-tag" id="modal-tag">Task</span>
       <h2 class="modal-title" id="modal-title">Task Title</h2>
-      <div class="modal-tool" id="modal-tool"><span>🛠</span><span id="modal-tool-text">Tool</span></div>
       <p class="modal-desc" id="modal-desc">Description here.</p>
       <div id="modal-screenshot"></div>
       <div class="modal-actions">
@@ -726,58 +768,46 @@
 // ======== TASK DATA — EDIT HERE ========
 const tasks = {
   pt2: {
-    tag: 'Practice Task 2',
     title: 'Data Analysis and Visualization',
     tool: 'Microsoft Excel',
     desc: `A data analysis task using Microsoft Excel where I explored a retailer sales dataset, built pivot tables, and created charts to visualize key business insights like total sales and operating profit across different regions and beverage brands.`,
-    dl: '#', 
+    dl: 'PracticeTask2_LancananSunshine.xlsx', 
     img: 'PT-2.png',
-    screenshot: null 
+    screenshot: 'PT-2.png'
   },
   pt3: {
-    tag: 'Practice Task 3',
-    title: 'Practice Task 3',
-    tool: 'Add Tool Here',
-    desc: 'Add your description for Practice Task 3 here. Explain the objective, tools used, and what you learned.',
-    dl: '#',
-    img: '',
-    screenshot: null
+    title: 'Excel Functions Practice Workbook',
+    desc: 'A Microsoft Excel practice workbook exploring 45+ built-in functions across Logical, Text, Date, Lookup, Math, and Statistical categories — each sheet demonstrating practical use cases and examples.',
+    dl: 'Panlilio&Lancanan.xlsx',
+    img: 'PT-3.png',
+    screenshot: 'PT-3.png'
   },
   pt4: {
-    tag: 'Practice Task 4',
-    title: 'Practice Task 4',
-    tool: 'Add Tool Here',
-    desc: 'Add your description for Practice Task 4 here. Explain the objective, tools used, and what you learned.',
-    dl: '#',
-    img: '',
-    screenshot: null
+    title: 'Sales Data Project',
+    desc: 'A Microsoft Excel sales project workbook created to apply spreadsheet skills in a real-world business context, demonstrating data organization, formula application, and structured reporting using Excel.',
+    dl: 'SalesProject_Lancanan.xlsx',
+    img: 'PT-4.png',
+    screenshot: 'PT-4.png'
   },
   mt1: {
-    tag: 'Midterm Task 1',
-    title: 'Midterm Task 1',
-    tool: 'Add Tool Here',
-    desc: 'Add your description for Midterm Task 1 here. Explain the objective, tools used, and what you learned.',
-    dl: '#',
-    img: '',
-    screenshot: null
+    title: 'Bike Sales Data Modeling',
+    desc: 'A Microsoft Excel lab task using a structured star schema — with dimension tables for customers, products, states, and countries linked to a central sales fact table. The dataset covers international mountain bike sales across 6 countries, tracking order quantity, unit cost, unit price, profit, and revenue per transaction.',
+    dl: 'MID_AAB_TASK-LANCANAN&PANLILIO.xlsx',
+    img: 'MID-1.png',
+    screenshot: 'MID-1.png'
   },
   mt2: {
-    tag: 'Midterm Task 2',
-    title: 'Midterm Task 2',
-    tool: 'Add Tool Here',
-    desc: 'Add your description for Midterm Task 2 here. Explain the objective, tools used, and what you learned.',
-    dl: '#',
-    img: '',
-    screenshot: null
+    title: 'Student Flat Data',
+    desc: 'A Microsoft Excel workbook containing structured student flat data, organized and formatted for data processing and analysis tasks.',
+    dl: 'Student_Flat_Data.xlsx',
+    img: 'MID-2.png',
+    screenshot: 'MID-2.png'
   }
 };
 
 function openModal(key) {
   const t = tasks[key];
-  document.getElementById('modal-img').src = t.img;
-  document.getElementById('modal-tag').textContent = t.tag;
   document.getElementById('modal-title').textContent = t.title;
-  document.getElementById('modal-tool-text').textContent = t.tool;
   document.getElementById('modal-desc').textContent = t.desc;
   document.getElementById('modal-dl').href = t.dl;
 
@@ -914,5 +944,42 @@ const skillObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.skill-bars').forEach(el => skillObserver.observe(el));
 </script>
+  <script>
+    emailjs.init("9sMK_0V3sivmDqNEJ"); // 🔁 Replace with your EmailJS Public Key
+
+    function sendEmail() {
+      const name    = document.getElementById('from_name').value.trim();
+      const email   = document.getElementById('from_email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const status  = document.getElementById('email-status');
+
+      if (!name || !email || !message) {
+        status.style.color = '#f87171';
+        status.textContent = '⚠ Please fill in all fields.';
+        return;
+      }
+
+      status.style.color = 'var(--sky2)';
+      status.textContent = '⏳ Sending...';
+
+      emailjs.send("service_g14z6m2", "template_2de3wxi", {  // 🔁 Replace both
+        from_name:  name,
+        from_email: email,
+        message:    message
+      })
+      .then(() => {
+        status.style.color = '#4ade80';
+        status.textContent = '✅ Message sent successfully!';
+        document.getElementById('from_name').value = '';
+        document.getElementById('from_email').value = '';
+        document.getElementById('message').value = '';
+      })
+      .catch((error) => {
+        status.style.color = '#f87171';
+        status.textContent = '❌ Failed to send. Please try again.';
+        console.error('EmailJS error:', error);
+      });
+    }
+  </script>
 </body>
 </html>
