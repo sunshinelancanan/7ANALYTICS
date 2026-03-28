@@ -306,31 +306,32 @@ const skillObserver = new IntersectionObserver(entries => {
 document.querySelectorAll('.skill-bars').forEach(el => skillObserver.observe(el));
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
   emailjs.init("9sMK_0V3sivmDqNEJ");
-
+ 
   function sendEmail() {
     const name    = document.getElementById('from_name').value.trim();
-    const email   = document.getElementById('from_email').value.trim();
     const message = document.getElementById('message').value.trim();
     const status  = document.getElementById('email-status');
-
-    if (!name || !email || !message) {
+ 
+    if (!name || !message) {
       status.style.color = '#f87171';
       status.textContent = '⚠ Please fill in all fields.';
       return;
     }
+ 
     status.style.color = 'var(--sky2)';
     status.textContent = '⏳ Sending...';
-
-    emailjs.send("service_g14z6m2", "template_2de3wxi", {
-      from_name: name, from_email: email, message: message
+ 
+    emailjs.send("service_7so149f", "template_2de3wxi", {
+      from_name: name,
+      message:   message
     })
     .then(() => {
       status.style.color = '#4ade80';
       status.textContent = '✅ Message sent successfully!';
       document.getElementById('from_name').value = '';
-      document.getElementById('from_email').value = '';
       document.getElementById('message').value = '';
     })
     .catch(error => {
