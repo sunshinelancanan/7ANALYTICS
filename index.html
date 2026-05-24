@@ -5,23 +5,317 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sunshine Lancanan — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <style>
-/* additional subtle styling for finals folder consistency */
-.folder-card .folder-icon {
-  background: linear-gradient(135deg, #f59e0b, #f97316);
-  box-shadow: 0 0 15px rgba(245,158,11,0.4);
+:root {
+  --sky: #38bdf8;
+  --sky2: #7dd3fc;
+  --sky3: #bae6fd;
+  --navy: #0c1a2e;
+  --navy2: #112240;
+  --navy3: #1a3a5c;
+  --accent: #0ea5e9;
+  --accent2: #06b6d4;
+  --white: #f0f9ff;
+  --glass: rgba(56,189,248,0.08);
+  --glass2: rgba(14,165,233,0.15);
+  --border: rgba(125,211,252,0.25);
+  --glow: 0 0 30px rgba(56,189,248,0.4);
+  --glow2: 0 0 60px rgba(56,189,248,0.2);
 }
-.folder-card .task-num {
-  background: linear-gradient(135deg, #f59e0b, #f97316);
-  color: #0c1a2e;
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
 }
-.folder-card .task-arrow {
-  color: #f97316;
+
+/* Navbar */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(12,26,46,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
 }
-.folder-card .btn-download {
+.nav-logo {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900; font-size: 1.1rem;
+  color: var(--sky); text-shadow: var(--glow); letter-spacing: 2px;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--sky2); text-decoration: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--sky); text-shadow: var(--glow); }
+
+/* Hero */
+#hero {
+  position: relative; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #0a1628 100%);
+}
+#hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(1px 1px at 10% 20%, rgba(125,211,252,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 55%, rgba(56,189,248,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 10%, rgba(186,230,253,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 75%, rgba(125,211,252,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 35%, rgba(56,189,248,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 60%, rgba(186,230,253,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 85%, rgba(56,189,248,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 15%, rgba(125,211,252,0.5) 0%, transparent 100%);
+  pointer-events: none; z-index: 0;
+}
+.hero-content { position: relative; z-index: 2; text-align: center; }
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem; color: var(--sky2);
+  letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.hero-name {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, var(--white) 0%, var(--sky) 50%, var(--sky2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(56,189,248,0.5));
+}
+.hero-tagline {
+  font-size: 1.4rem; font-weight: 400; color: var(--sky3);
+  margin-top: 0.8rem; letter-spacing: 3px;
+}
+.hero-badges {
+  display: flex; justify-content: center; gap: 0.8rem;
+  flex-wrap: wrap; margin-top: 2rem;
+}
+.badge {
+  padding: 0.4rem 1.2rem;
+  border: 1px solid var(--border); border-radius: 50px;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  background: var(--glass); backdrop-filter: blur(10px);
+  color: var(--sky2);
+}
+.hero-cta { margin-top: 2.5rem; }
+.btn {
+  display: inline-block; padding: 0.85rem 2.5rem;
+  border: 1.5px solid var(--sky); border-radius: 4px;
+  color: var(--sky); font-family: 'Orbitron', monospace;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; background: transparent;
+  cursor: pointer; transition: all 0.3s;
+}
+.btn:hover { color: var(--navy); background: var(--sky); box-shadow: var(--glow); }
+
+/* Ticker */
+.ticker-wrap {
+  background: var(--navy2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0.8rem 0; overflow: hidden;
+}
+.ticker { display: flex; animation: ticker 20s linear infinite; white-space: nowrap; }
+.ticker span {
+  padding: 0 2rem; font-family: 'Space Mono', monospace;
+  font-size: 0.7rem; color: var(--sky2); letter-spacing: 2px;
+}
+.ticker span::before { content: '◆  '; color: var(--sky); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Section */
+section { padding: 6rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem; color: var(--sky);
+  letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--white) 30%, var(--sky) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 3rem;
+}
+.divider {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--sky), var(--accent2));
+  border-radius: 2px; margin-bottom: 1rem;
+  box-shadow: var(--glow);
+}
+
+/* About */
+#about { background: linear-gradient(180deg, var(--navy) 0%, var(--navy2) 100%); }
+.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: center; }
+.about-img-card {
+  border-radius: 16px; overflow: hidden;
+  border: 2px solid var(--border);
+  background: var(--glass);
+}
+.about-img-card img {
+  width: 100%; height: 400px;
+  object-fit: cover; display: block;
+}
+.about-text h3 {
+  font-family: 'Orbitron', monospace; font-size: 1.6rem;
+  font-weight: 700; color: var(--white); margin-bottom: 1rem;
+}
+.about-text p { color: var(--sky3); line-height: 1.9; font-size: 1.05rem; margin-bottom: 1.5rem; }
+.info-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+.chip {
+  padding: 0.35rem 1rem; background: var(--glass2);
+  border: 1px solid var(--border); border-radius: 50px;
+  font-size: 0.8rem; font-weight: 600; color: var(--sky2);
+}
+.skill-bars { display: flex; flex-direction: column; gap: 1rem; }
+.skill-bar-item label {
+  display: flex; justify-content: space-between;
+  font-size: 0.85rem; font-weight: 600; color: var(--sky2);
+  margin-bottom: 0.4rem;
+}
+.skill-track { height: 6px; background: var(--navy3); border-radius: 4px; overflow: hidden; }
+.skill-fill {
+  height: 100%; border-radius: 4px;
+  background: linear-gradient(90deg, var(--sky), var(--accent2));
+  width: 0; transition: width 1.2s ease;
+}
+
+/* Activities Folder Grid */
+#activities { background: var(--navy); }
+.folder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2rem; }
+.folder-card {
+  background: var(--glass); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  backdrop-filter: blur(16px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.folder-card:hover { transform: translateY(-6px); box-shadow: var(--glow); }
+.folder-header {
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(135deg, var(--navy3) 0%, rgba(14,165,233,0.2) 100%);
+  display: flex; align-items: center; gap: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.folder-preview-img { width: 100%; height: 160px; overflow: hidden; border-bottom: 1px solid var(--border); }
+.folder-preview-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.85);
+}
+.folder-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--sky), var(--accent2));
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.folder-title { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 700; color: var(--white); }
+.folder-subtitle { font-size: 0.8rem; color: var(--sky2); }
+.task-list { padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.task-btn {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.85rem 1.2rem;
+  background: rgba(14,165,233,0.07);
+  border: 1px solid rgba(125,211,252,0.15);
+  border-radius: 10px; cursor: pointer; transition: all 0.3s;
+}
+.task-btn:hover { background: rgba(14,165,233,0.18); border-color: var(--sky); transform: translateX(4px); }
+.task-num {
+  width: 28px; height: 28px;
+  background: linear-gradient(135deg, var(--sky), var(--accent2));
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', monospace; font-size: 0.7rem; font-weight: 700;
+  color: var(--navy); flex-shrink: 0;
+}
+.task-info { flex: 1; }
+.task-name { font-size: 0.95rem; font-weight: 600; color: var(--white); }
+.task-meta { font-size: 0.75rem; color: var(--sky2); margin-top: 2px; }
+.task-arrow { color: var(--sky); font-size: 1rem; }
+
+/* Finals specific accent */
+.folder-card:last-child .folder-icon {
   background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+.folder-card:last-child .task-num {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,20,40,0.95); backdrop-filter: blur(12px);
+  z-index: 1000; display: none; align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: linear-gradient(135deg, var(--navy2) 0%, var(--navy3) 100%);
+  border: 1px solid var(--border); border-radius: 20px;
+  width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto;
+}
+.modal-body { padding: 2rem; }
+.modal-title { font-family: 'Orbitron', monospace; font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; }
+.modal-desc { color: var(--sky3); line-height: 1.8; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.screenshot-img { width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+.modal-actions { display: flex; gap: 1rem; }
+.btn-download {
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, var(--sky), var(--accent2));
+  border-radius: 8px; color: var(--navy);
+  font-family: 'Orbitron', monospace; font-size: 0.75rem;
+  font-weight: 700; text-decoration: none; display: inline-block;
+}
+.btn-close {
+  padding: 0.7rem 1.5rem; background: transparent;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  color: var(--sky2); cursor: pointer;
+}
+
+/* Contact */
+#contact { background: var(--navy2); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.contact-info h3 { font-family: 'Orbitron', monospace; font-size: 1.4rem; color: var(--white); margin-bottom: 1rem; }
+.contact-info p { color: var(--sky3); line-height: 1.8; margin-bottom: 2rem; }
+.contact-item { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+.contact-icon {
+  width: 36px; height: 36px; background: var(--glass2);
+  border: 1px solid var(--border); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.form-group { margin-bottom: 1.2rem; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 0.9rem 1.2rem;
+  background: var(--glass); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--white);
+  font-family: 'Rajdhani', sans-serif; font-size: 1rem;
+}
+footer {
+  text-align: center; padding: 2.5rem;
+  background: var(--navy); border-top: 1px solid var(--border);
+  font-size: 0.85rem; color: var(--sky2);
+}
+footer span { color: var(--sky); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .folder-grid { grid-template-columns: 1fr; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1rem; }
 }
 </style>
 </head>
@@ -56,7 +350,7 @@
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-  <div class="ticker" id="ticker-inner">
+  <div class="ticker">
     <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Microsoft Excel</span>
     <span>Data Analysis</span><span>Spreadsheets</span><span>Web Design</span>
     <span>Computer Science</span><span>Problem Solving</span><span>Visual Design</span>
@@ -67,16 +361,13 @@
 </div>
 
 <!-- ABOUT -->
-<section id="about" class="grid-bg">
+<section id="about">
   <div class="container">
     <div class="about-grid">
-      <div class="about-img-wrap reveal">
-        <div class="about-img-card">
-          <img src="bonak.jpg" alt="Sunshine Lancanan">
-          <div class="about-photo-overlay"></div>
-        </div>
+      <div class="about-img-card">
+        <img src="bonak.jpg" alt="Sunshine Lancanan" onerror="this.src='https://via.placeholder.com/400x400?text=Sunshine'">
       </div>
-      <div class="about-text reveal">
+      <div class="about-text">
         <p class="section-label">About Me</p>
         <div class="divider"></div>
         <h3>Hi, I'm Sunshine! ☀️</h3>
@@ -88,144 +379,61 @@
           <span class="chip">🌱 Always Learning</span>
         </div>
         <div class="skill-bars">
-          <div class="skill-bar-item">
-            <label><span>HTML & CSS</span><span>85%</span></label>
-            <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <label><span>JavaScript</span><span>70%</span></label>
-            <div class="skill-track"><div class="skill-fill" data-width="70"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <label><span>Microsoft Excel</span><span>80%</span></label>
-            <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <label><span>Data Analysis</span><span>75%</span></label>
-            <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
-          </div>
+          <div class="skill-bar-item"><label><span>HTML & CSS</span><span>85%</span></label><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
+          <div class="skill-bar-item"><label><span>JavaScript</span><span>70%</span></label><div class="skill-track"><div class="skill-fill" data-width="70"></div></div></div>
+          <div class="skill-bar-item"><label><span>Microsoft Excel</span><span>80%</span></label><div class="skill-track"><div class="skill-fill" data-width="80"></div></div></div>
+          <div class="skill-bar-item"><label><span>Data Analysis</span><span>75%</span></label><div class="skill-track"><div class="skill-fill" data-width="75"></div></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ACTIVITIES (Practice + Midterm + NEW Finals) -->
+<!-- ACTIVITIES -->
 <section id="activities">
   <div class="container">
-    <p class="section-label reveal">Activities</p>
-    <div class="divider reveal"></div>
-    <h2 class="section-title reveal">My Tasks & Activities</h2>
+    <p class="section-label">Activities</p>
+    <div class="divider"></div>
+    <h2 class="section-title">My Tasks & Activities</h2>
     <div class="folder-grid">
-      <!-- Practice Tasks Folder -->
-      <div class="folder-card reveal">
+      <!-- Practice Tasks -->
+      <div class="folder-card">
         <div class="folder-header">
           <div class="folder-icon">📁</div>
-          <div>
-            <div class="folder-title">Practice Tasks</div>
-            <div class="folder-subtitle">Tasks 2, 3 & 4</div>
-          </div>
+          <div><div class="folder-title">Practice Tasks</div><div class="folder-subtitle">Tasks 2, 3 & 4</div></div>
         </div>
-        <div class="folder-preview-img">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Practice Tasks Preview">
-        </div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Practice"></div>
         <div class="task-list">
-          <div class="task-btn" onclick="openModal('pt2')">
-            <div class="task-num">P2</div>
-            <div class="task-info">
-              <div class="task-name">Practice Task 2</div>
-              <div class="task-meta">Data Analysis & Visualization · Excel</div>
-            </div>
-            <span class="task-arrow">→</span>
-          </div>
-          <div class="task-btn" onclick="openModal('pt3')">
-            <div class="task-num">P3</div>
-            <div class="task-info">
-              <div class="task-name">Practice Task 3</div>
-              <div class="task-meta">Excel Functions Practice Workbook</div>
-            </div>
-            <span class="task-arrow">→</span>
-          </div>
-          <div class="task-btn" onclick="openModal('pt4')">
-            <div class="task-num">P4</div>
-            <div class="task-info">
-              <div class="task-name">Practice Task 4</div>
-              <div class="task-meta">Sales Data Project</div>
-            </div>
-            <span class="task-arrow">→</span>
-          </div>
+          <div class="task-btn" onclick="openModal('pt2')"><div class="task-num">P2</div><div class="task-info"><div class="task-name">Practice Task 2</div><div class="task-meta">Data Analysis & Visualization · Excel</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('pt3')"><div class="task-num">P3</div><div class="task-info"><div class="task-name">Practice Task 3</div><div class="task-meta">Excel Functions Practice Workbook</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('pt4')"><div class="task-num">P4</div><div class="task-info"><div class="task-name">Practice Task 4</div><div class="task-meta">Sales Data Project</div></div><span class="task-arrow">→</span></div>
         </div>
       </div>
       
-      <!-- Midterm Tasks Folder -->
-      <div class="folder-card reveal">
+      <!-- Midterm Tasks -->
+      <div class="folder-card">
         <div class="folder-header">
           <div class="folder-icon">📂</div>
-          <div>
-            <div class="folder-title">Midterm Tasks</div>
-            <div class="folder-subtitle">Tasks 1 & 2</div>
-          </div>
+          <div><div class="folder-title">Midterm Tasks</div><div class="folder-subtitle">Tasks 1 & 2</div></div>
         </div>
-        <div class="folder-preview-img">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Midterm Tasks Preview">
-        </div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Midterm"></div>
         <div class="task-list">
-          <div class="task-btn" onclick="openModal('mt1')">
-            <div class="task-num">M1</div>
-            <div class="task-info">
-              <div class="task-name">Midterm Task 1</div>
-              <div class="task-meta">Bike Sales Data Modeling</div>
-            </div>
-            <span class="task-arrow">→</span>
-          </div>
-          <div class="task-btn" onclick="openModal('mt2')">
-            <div class="task-num">M2</div>
-            <div class="task-info">
-              <div class="task-name">Midterm Task 2</div>
-              <div class="task-meta">Student Flat Data</div>
-            </div>
-            <span class="task-arrow">→</span>
-          </div>
+          <div class="task-btn" onclick="openModal('mt1')"><div class="task-num">M1</div><div class="task-info"><div class="task-name">Midterm Task 1</div><div class="task-meta">Bike Sales Data Modeling</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('mt2')"><div class="task-num">M2</div><div class="task-info"><div class="task-name">Midterm Task 2</div><div class="task-meta">Student Flat Data</div></div><span class="task-arrow">→</span></div>
         </div>
       </div>
 
-      <!-- ✨ NEW: FINALS TASKS Folder (exactly like Midterm style) ✨ -->
-      <div class="folder-card reveal">
+      <!-- Finals Tasks (NEW - styled like Midterm) -->
+      <div class="folder-card">
         <div class="folder-header">
           <div class="folder-icon">📂</div>
-          <div>
-            <div class="folder-title">Finals Tasks</div>
-            <div class="folder-subtitle">Tasks 1, 2 & 3</div>
-          </div>
+          <div><div class="folder-title">Finals Tasks</div><div class="folder-subtitle">Tasks 1, 2 & 3</div></div>
         </div>
-        <div class="folder-preview-img">
-          <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&q=80" alt="Finals Tasks Preview">
-        </div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&q=80" alt="Finals"></div>
         <div class="task-list">
-          <div class="task-btn" onclick="openModal('ft1')">
-            <div class="task-num">F1</div>
-            <div class="task-info">
-              <div class="task-name">Finals Task 1</div>
-              <div class="task-meta">Advanced Dashboard & KPIs</div>
-            </div>
-            <span class="task-arrow">→</span>
-          </div>
-          <div class="task-btn" onclick="openModal('ft2')">
-            <div class="task-num">F2</div>
-            <div class="task-info">
-              <div class="task-name">Finals Task 2</div>
-              <div class="task-meta">Predictive Sales Modeling</div>
-            </div>
-            <span class="task-arrow">→</span>
-          </div>
-          <div class="task-btn" onclick="openModal('ft3')">
-            <div class="task-num">F3</div>
-            <div class="task-info">
-              <div class="task-name">Finals Task 3</div>
-              <div class="task-meta">Portfolio Integration Project</div>
-            </div>
-            <span class="task-arrow">→</span>
-          </div>
+          <div class="task-btn" onclick="openModal('ft1')"><div class="task-num">F1</div><div class="task-info"><div class="task-name">Finals Task 1</div><div class="task-meta">Advanced Dashboard & KPIs</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('ft2')"><div class="task-num">F2</div><div class="task-info"><div class="task-name">Finals Task 2</div><div class="task-meta">Predictive Sales Modeling</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('ft3')"><div class="task-num">F3</div><div class="task-info"><div class="task-name">Finals Task 3</div><div class="task-meta">Portfolio Integration Project</div></div><span class="task-arrow">→</span></div>
         </div>
       </div>
     </div>
@@ -236,34 +444,19 @@
 <section id="contact">
   <div class="container">
     <div class="contact-grid">
-      <div class="contact-info reveal">
+      <div class="contact-info">
         <p class="section-label">Contact</p>
         <div class="divider"></div>
         <h3>Get In Touch</h3>
         <p>Have a question or want to collaborate? Feel free to reach out — I'd love to hear from you!</p>
-        <div class="contact-item">
-          <div class="contact-icon">📧</div>
-          <span>slancanan23-0095@cca.edu.ph</span>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🇵🇭</div>
-          <span>Philippines</span>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🎓</div>
-          <span>Computer Science Student</span>
-        </div>
+        <div class="contact-item"><div class="contact-icon">📧</div><span>slancanan23-0095@cca.edu.ph</span></div>
+        <div class="contact-item"><div class="contact-icon">🇵🇭</div><span>Philippines</span></div>
+        <div class="contact-item"><div class="contact-icon">🎓</div><span>Computer Science Student</span></div>
       </div>
-      <div class="reveal">
-        <div class="form-group">
-          <input type="text" id="from_name" placeholder="Your Name" required>
-        </div>
-        <div class="form-group">
-          <input type="email" id="from_email" placeholder="Your Email" required>
-        </div>
-        <div class="form-group">
-          <textarea id="message" placeholder="Your Message" required></textarea>
-        </div>
+      <div>
+        <div class="form-group"><input type="text" id="from_name" placeholder="Your Name"></div>
+        <div class="form-group"><input type="email" id="from_email" placeholder="Your Email"></div>
+        <div class="form-group"><textarea id="message" placeholder="Your Message" rows="4"></textarea></div>
         <button class="btn" onclick="sendEmail()">Send Message</button>
         <p id="email-status" style="margin-top:1rem; font-size:0.9rem;"></p>
       </div>
@@ -271,14 +464,11 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  Built with 💙 by <span>Sunshine Lancanan</span> — Computer Science Student &nbsp;|&nbsp; © 2026
-</footer>
+<footer>Built with 💙 by <span>Sunshine Lancanan</span> — Computer Science Student &nbsp;|&nbsp; © 2026</footer>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal" id="modal-box">
+  <div class="modal">
     <div class="modal-body">
       <h2 class="modal-title" id="modal-title">Task Title</h2>
       <p class="modal-desc" id="modal-desc">Description here.</p>
@@ -292,139 +482,55 @@
 </div>
 
 <script>
-// tasks data includes existing PRACTICE, MIDTERM, and NEW FINALS
 const tasks = {
-  // Practice
-  pt2: {
-    title: 'Data Analysis and Visualization',
-    desc: `A data analysis task using Microsoft Excel where I explored a retailer sales dataset, built pivot tables, and created charts to visualize key business insights like total sales and operating profit across different regions and beverage brands.`,
-    dl: 'PracticeTask2_LancananSunshine.xlsx',
-    screenshot: 'PT-2.png'
-  },
-  pt3: {
-    title: 'Excel Functions Practice Workbook',
-    desc: 'A Microsoft Excel practice workbook exploring 45+ built-in functions across Logical, Text, Date, Lookup, Math, and Statistical categories — each sheet demonstrating practical use cases and examples.',
-    dl: 'Panlilio&Lancanan.xlsx',
-    screenshot: 'PT-3.png'
-  },
-  pt4: {
-    title: 'Sales Data Project',
-    desc: 'A Microsoft Excel sales project workbook created to apply spreadsheet skills in a real-world business context, demonstrating data organization, formula application, and structured reporting using Excel.',
-    dl: 'SalesProject_Lancanan.xlsx',
-    screenshot: 'PT-4.png'
-  },
-  // Midterm
-  mt1: {
-    title: 'Bike Sales Data Modeling',
-    desc: 'A Microsoft Excel lab task using a structured star schema — with dimension tables for customers, products, states, and countries linked to a central sales fact table. The dataset covers international mountain bike sales across 6 countries, tracking order quantity, unit cost, unit price, profit, and revenue per transaction.',
-    dl: 'MID_AAB_TASK-LANCANAN&PANLILIO.xlsx',
-    screenshot: 'MID-1.png'
-  },
-  mt2: {
-    title: 'Student Flat Data',
-    desc: 'A Microsoft Excel workbook containing structured student flat data, organized and formatted for data processing and analysis tasks.',
-    dl: 'Student_Flat_Data.xlsx',
-    screenshot: 'MID-2.png'
-  },
-  // ✨ FINALS TASKS (added exactly like Midterm structure) ✨
-  ft1: {
-    title: 'Advanced Dashboard & KPIs',
-    desc: 'Comprehensive Excel dashboard integrating dynamic KPIs, pivot charts, and slicers. This finals task demonstrates advanced data visualization techniques, real-time performance metrics, and interactive business reporting — consolidating semester-long Excel skills into a professional dashboard.',
-    dl: 'Finals_Task1_Dashboard_Lancanan.xlsx',
-    screenshot: 'FINALS-1.png'
-  },
-  ft2: {
-    title: 'Predictive Sales Modeling',
-    desc: 'Forecasting project using Excel’s regression tools and trend functions. Analyzes historical sales patterns to predict next quarter performance, including confidence intervals, seasonality adjustments, and scenario analysis — highlighting advanced data modeling and business forecasting.',
-    dl: 'Finals_Task2_PredictiveModel_Lancanan.xlsx',
-    screenshot: 'FINALS-2.png'
-  },
-  ft3: {
-    title: 'Portfolio Integration Project',
-    desc: 'Capstone finals task that combines data cleaning, advanced formula logic (INDEX-MATCH, SUMIFS, array formulas), and automated reporting. This project showcases full data workflow — from raw datasets to executive summary, reflecting mastery of Excel as a data analytics tool.',
-    dl: 'Finals_Task3_Capstone_Lancanan.xlsx',
-    screenshot: 'FINALS-3.png'
-  }
+  pt2: { title: 'Data Analysis and Visualization', desc: 'A data analysis task using Microsoft Excel where I explored a retailer sales dataset, built pivot tables, and created charts to visualize key business insights.', dl: 'PracticeTask2_LancananSunshine.xlsx', screenshot: 'PT-2.png' },
+  pt3: { title: 'Excel Functions Practice Workbook', desc: 'A Microsoft Excel practice workbook exploring 45+ built-in functions across Logical, Text, Date, Lookup, Math, and Statistical categories.', dl: 'Panlilio&Lancanan.xlsx', screenshot: 'PT-3.png' },
+  pt4: { title: 'Sales Data Project', desc: 'A Microsoft Excel sales project workbook demonstrating data organization, formula application, and structured reporting.', dl: 'SalesProject_Lancanan.xlsx', screenshot: 'PT-4.png' },
+  mt1: { title: 'Bike Sales Data Modeling', desc: 'A Microsoft Excel lab task using a structured star schema with dimension tables for customers, products, states, and countries linked to a central sales fact table.', dl: 'MID_AAB_TASK-LANCANAN&PANLILIO.xlsx', screenshot: 'MID-1.png' },
+  mt2: { title: 'Student Flat Data', desc: 'A Microsoft Excel workbook containing structured student flat data, organized and formatted for data processing and analysis tasks.', dl: 'Student_Flat_Data.xlsx', screenshot: 'MID-2.png' },
+  ft1: { title: 'Advanced Dashboard & KPIs', desc: 'Comprehensive Excel dashboard integrating dynamic KPIs, pivot charts, and slicers. Demonstrates advanced data visualization and interactive business reporting.', dl: 'Finals_Task1_Dashboard_Lancanan.xlsx', screenshot: 'FINALS-1.png' },
+  ft2: { title: 'Predictive Sales Modeling', desc: 'Forecasting project using Excel regression tools and trend functions. Analyzes historical sales patterns to predict next quarter performance.', dl: 'Finals_Task2_PredictiveModel_Lancanan.xlsx', screenshot: 'FINALS-2.png' },
+  ft3: { title: 'Portfolio Integration Project', desc: 'Capstone finals task combining data cleaning, advanced formula logic, and automated reporting. Showcases mastery of Excel as a data analytics tool.', dl: 'Finals_Task3_Capstone_Lancanan.xlsx', screenshot: 'FINALS-3.png' }
 };
 
 function openModal(key) {
   const t = tasks[key];
-  if (!t) return;
   document.getElementById('modal-title').textContent = t.title;
   document.getElementById('modal-desc').textContent = t.desc;
   document.getElementById('modal-dl').href = t.dl;
   const ssDiv = document.getElementById('modal-screenshot');
-  if (t.screenshot) {
-    ssDiv.innerHTML = `<img src="${t.screenshot}" class="screenshot-img" alt="Screenshot" style="max-width:100%; border-radius:12px; margin-bottom:1.5rem; border:1px solid var(--border);">`;
-  } else {
-    ssDiv.innerHTML = `<div class="screenshot-box"><span class="ss-icon">🖼</span><span>Screenshot coming soon</span></div>`;
-  }
+  ssDiv.innerHTML = `<img src="${t.screenshot}" class="screenshot-img" alt="Screenshot" onerror="this.style.display='none'">`;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModalBtn() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalBtn(); }
 
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModalBtn();
-}
-
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Skill bars
+// Skill bars reveal
 const skillObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      e.target.querySelectorAll('.skill-fill').forEach(fill => {
-        fill.style.width = fill.dataset.width + '%';
-      });
+      e.target.querySelectorAll('.skill-fill').forEach(fill => { fill.style.width = fill.dataset.width + '%'; });
     }
   });
 }, { threshold: 0.3 });
 document.querySelectorAll('.skill-bars').forEach(el => skillObserver.observe(el));
-</script>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  emailjs.init("9sMK_0V3sivmDqNEJ");
- 
-  function sendEmail() {
-    const name    = document.getElementById('from_name').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const status  = document.getElementById('email-status');
- 
-    if (!name || !message) {
-      status.style.color = '#f87171';
-      status.textContent = '⚠ Please fill in all fields.';
-      return;
-    }
- 
-    status.style.color = 'var(--sky2)';
-    status.textContent = '⏳ Sending...';
- 
-    emailjs.send("service_7so149f", "template_2de3wxi", {
-      from_name: name,
-      message:   message
-    })
-    .then(() => {
-      status.style.color = '#4ade80';
-      status.textContent = '✅ Message sent successfully!';
-      document.getElementById('from_name').value = '';
-      document.getElementById('message').value = '';
-    })
-    .catch(error => {
-      status.style.color = '#f87171';
-      status.textContent = '❌ Failed to send. Please try again.';
-      console.error('EmailJS error:', error);
-    });
-  }
+// EmailJS
+emailjs.init("9sMK_0V3sivmDqNEJ");
+function sendEmail() {
+  const name = document.getElementById('from_name').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const status = document.getElementById('email-status');
+  if (!name || !message) { status.style.color = '#f87171'; status.textContent = '⚠ Please fill in all fields.'; return; }
+  status.style.color = 'var(--sky2)'; status.textContent = '⏳ Sending...';
+  emailjs.send("service_7so149f", "template_2de3wxi", { from_name: name, message: message })
+    .then(() => { status.style.color = '#4ade80'; status.textContent = '✅ Message sent!'; document.getElementById('from_name').value = ''; document.getElementById('message').value = ''; })
+    .catch(() => { status.style.color = '#f87171'; status.textContent = '❌ Failed to send.'; });
+}
 </script>
 </body>
 </html>
