@@ -294,14 +294,8 @@ section { padding: 6rem 2rem; }
   color: var(--white); margin-bottom: 1rem; line-height: 1.3;
 }
 .modal-desc { color: var(--sky3); line-height: 1.8; font-size: 0.98rem; margin-bottom: 1.5rem; }
-.screenshot-box {
-  width: 100%; height: 180px; border: 2px dashed var(--border);
-  border-radius: 12px; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  color: var(--sky2); font-size: 0.85rem; gap: 0.5rem;
-  margin-bottom: 1.5rem; background: var(--glass);
-}
-.screenshot-box .ss-icon { font-size: 2rem; opacity: 0.5; }
+.screenshot-box { display: none; }
+.screenshot-box .ss-icon { display: none; }
 .screenshot-img {
   width: 100%; border-radius: 12px;
   margin-bottom: 1.5rem; display: block; border: 1px solid var(--border);
