@@ -1,18 +1,18 @@
 :root {
-  --sky: #7896b0;
-  --sky2: #9db5c8;
-  --sky3: #c2d4e0;
-  --navy: #111820;
-  --navy2: #161f29;
-  --navy3: #1d2b38;
-  --accent: #5a7f9a;
-  --accent2: #4e7085;
-  --white: #e8eef2;
-  --glass: rgba(120,150,176,0.06);
-  --glass2: rgba(90,127,154,0.12);
-  --border: rgba(157,181,200,0.18);
-  --glow: none;
-  --glow2: none;
+  --sky: #38bdf8;
+  --sky2: #7dd3fc;
+  --sky3: #bae6fd;
+  --navy: #0c1a2e;
+  --navy2: #112240;
+  --navy3: #1a3a5c;
+  --accent: #0ea5e9;
+  --accent2: #06b6d4;
+  --white: #f0f9ff;
+  --glass: rgba(56,189,248,0.08);
+  --glass2: rgba(14,165,233,0.15);
+  --border: rgba(125,211,252,0.25);
+  --glow: 0 0 30px rgba(56,189,248,0.4);
+  --glow2: 0 0 60px rgba(56,189,248,0.2);
 }
 
 *, *::before, *::after { 
@@ -26,7 +26,7 @@ html {
 body {
   background: var(--navy);
   color: var(--white);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   overflow-x: hidden;
   cursor: default;
 }
@@ -47,7 +47,7 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Orbitron', monospace;
   font-weight: 900; 
   font-size: 1.1rem;
   color: var(--sky); 
@@ -62,7 +62,7 @@ nav {
 .nav-links a {
   color: var(--sky2); 
   text-decoration: none;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   font-size: 0.95rem; 
   font-weight: 600;
   letter-spacing: 1px; 
@@ -131,7 +131,7 @@ nav {
   text-align: center;
 }
 .hero-eyebrow {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 0.85rem; 
   color: var(--sky2);
   letter-spacing: 4px; 
@@ -141,7 +141,7 @@ nav {
   animation: fadeUp 0.8s 0.3s forwards;
 }
 .hero-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Orbitron', monospace;
   font-size: clamp(2.8rem, 7vw, 5.5rem);
   font-weight: 900; 
   line-height: 1;
@@ -149,6 +149,7 @@ nav {
   -webkit-background-clip: text; 
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(56,189,248,0.5));
   opacity: 0; 
   animation: fadeUp 0.8s 0.5s forwards;
 }
@@ -187,7 +188,7 @@ nav {
   background: var(--glass2); 
   border-color: var(--sky); 
   color: var(--sky); 
-  box-shadow: none; 
+  box-shadow: var(--glow); 
 }
 .hero-cta { 
   margin-top: 2.5rem; 
@@ -200,7 +201,7 @@ nav {
   border: 1.5px solid var(--sky); 
   border-radius: 4px;
   color: var(--sky); 
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Orbitron', monospace;
   font-size: 0.8rem; 
   font-weight: 600;
   letter-spacing: 2px; 
@@ -223,7 +224,7 @@ nav {
 }
 .btn:hover { 
   color: var(--navy); 
-  box-shadow: none; 
+  box-shadow: var(--glow); 
 }
 .btn:hover::before { 
   transform: translateX(0); 
@@ -238,7 +239,7 @@ section {
   margin: 0 auto; 
 }
 .section-label {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 0.75rem; 
   color: var(--sky);
   letter-spacing: 4px; 
@@ -246,7 +247,7 @@ section {
   margin-bottom: 0.5rem;
 }
 .section-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Orbitron', monospace;
   font-size: clamp(1.8rem, 4vw, 2.8rem); 
   font-weight: 800;
   background: linear-gradient(135deg, var(--white) 30%, var(--sky) 100%);
@@ -261,7 +262,7 @@ section {
   background: linear-gradient(90deg, var(--sky), var(--accent2));
   border-radius: 2px; 
   margin-bottom: 1rem; 
-  box-shadow: none;
+  box-shadow: var(--glow);
 }
 
 /* About */
@@ -281,7 +282,7 @@ section {
   border-radius: 16px; 
   overflow: hidden;
   border: 2px solid var(--border); 
-  box-shadow: none;
+  box-shadow: var(--glow2);
   transform-style: preserve-3d; 
   transition: transform 0.6s ease;
   background: var(--glass); 
@@ -304,7 +305,7 @@ section {
   pointer-events: none;
 }
 .about-text h3 {
-  font-family: 'Cormorant Garamond', serif; 
+  font-family: 'Orbitron', monospace; 
   font-size: 1.6rem; 
   font-weight: 700;
   color: var(--white); 
@@ -356,6 +357,7 @@ section {
   height: 100%; 
   border-radius: 4px;
   background: linear-gradient(90deg, var(--sky), var(--accent2));
+  box-shadow: 0 0 10px rgba(56,189,248,0.5);
   width: 0; 
   transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
 }
@@ -419,11 +421,11 @@ section {
   align-items: center; 
   justify-content: center;
   font-size: 1.3rem; 
-  box-shadow: none; 
+  box-shadow: var(--glow); 
   flex-shrink: 0;
 }
 .folder-title { 
-  font-family: 'Cormorant Garamond', serif; 
+  font-family: 'Orbitron', monospace; 
   font-size: 1rem; 
   font-weight: 700; 
   color: var(--white); 
@@ -464,7 +466,7 @@ section {
   display: flex; 
   align-items: center; 
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif; 
+  font-family: 'Orbitron', monospace; 
   font-size: 0.7rem; 
   font-weight: 700;
   color: var(--navy); 
@@ -528,7 +530,7 @@ section {
   padding: 2rem; 
 }
 .modal-title {
-  font-family: 'Cormorant Garamond', serif; 
+  font-family: 'Orbitron', monospace; 
   font-size: 1.4rem; 
   font-weight: 800;
   color: var(--white); 
@@ -580,7 +582,7 @@ section {
   border: none; 
   border-radius: 8px; 
   color: var(--navy);
-  font-family: 'Cormorant Garamond', serif; 
+  font-family: 'Orbitron', monospace; 
   font-size: 0.75rem; 
   font-weight: 700;
   letter-spacing: 1px; 
@@ -588,7 +590,7 @@ section {
   cursor: pointer; 
   text-decoration: none; 
   transition: all 0.3s; 
-  box-shadow: none;
+  box-shadow: var(--glow);
 }
 .btn-download:hover { 
   transform: translateY(-2px); 
@@ -600,7 +602,7 @@ section {
   border: 1.5px solid var(--border); 
   border-radius: 8px;
   color: var(--sky2); 
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   font-size: 0.9rem; 
   font-weight: 600; 
   cursor: pointer; 
@@ -626,7 +628,7 @@ section {
 }
 .ticker span {
   padding: 0 2rem; 
-  font-family: 'DM Mono', monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 0.7rem; 
   color: var(--sky2); 
   letter-spacing: 2px;
@@ -654,7 +656,7 @@ section {
   gap: 4rem; 
 }
 .contact-info h3 { 
-  font-family: 'Cormorant Garamond', serif; 
+  font-family: 'Orbitron', monospace; 
   font-size: 1.4rem; 
   color: var(--white); 
   margin-bottom: 1rem; 
@@ -696,7 +698,7 @@ section {
   border: 1px solid var(--border); 
   border-radius: 10px; 
   color: var(--white);
-  font-family: 'DM Sans', sans-serif; 
+  font-family: 'Rajdhani', sans-serif; 
   font-size: 1rem; 
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -719,7 +721,7 @@ footer {
   border-top: 1px solid var(--border); 
   font-size: 0.85rem;
   color: var(--sky2); 
-  font-family: 'DM Mono', monospace;
+  font-family: 'Space Mono', monospace;
 }
 footer span { 
   color: var(--sky); 
