@@ -98,9 +98,14 @@
     <p class="section-label reveal">Activities</p>
     <div class="divider reveal"></div>
     <h2 class="section-title reveal">My Tasks & Activities</h2>
+
+    <!-- ── MIDTERM SECTION ── -->
+    <div class="period-label reveal">
+      <span class="period-badge midterm-badge">📘 Midterm Tasks Section</span>
+    </div>
     <div class="folder-grid">
 
-      <!-- Practice Tasks -->
+      <!-- Practice Tasks (Midterm) -->
       <div class="folder-card reveal">
         <div class="folder-header">
           <div class="folder-icon">📁</div>
@@ -172,7 +177,98 @@
         </div>
       </div>
 
+    </div><!-- end midterm folder-grid -->
+
+    <!-- ── SEPARATOR ── -->
+    <div class="section-separator reveal"></div>
+
+    <!-- ── FINALS SECTION ── -->
+    <div class="period-label reveal">
+      <span class="period-badge finals-badge">🏆 Finals Tasks Section</span>
     </div>
+    <div class="folder-grid">
+
+      <!-- Finals Practice Tasks -->
+      <div class="folder-card finals-card reveal">
+        <div class="folder-header finals-header">
+          <div class="folder-icon finals-icon">📁</div>
+          <div>
+            <div class="folder-title">Finals Practice Tasks</div>
+            <div class="folder-subtitle">Practice Tasks 1 & 2</div>
+          </div>
+        </div>
+        <div class="folder-preview-img">
+          <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80" alt="Finals Practice Tasks">
+        </div>
+        <div class="task-list">
+          <div class="task-btn" onclick="openModal('fp1')">
+            <div class="task-num finals-num">F1</div>
+            <div class="task-info">
+              <div class="task-name">Finals Practice Task 1</div>
+              <div class="task-meta">Add your description here</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+          <div class="task-btn" onclick="openModal('fp2')">
+            <div class="task-num finals-num">F2</div>
+            <div class="task-info">
+              <div class="task-name">Finals Practice Task 2</div>
+              <div class="task-meta">Add your description here</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finals Main Tasks -->
+      <div class="folder-card finals-card reveal">
+        <div class="folder-header finals-header">
+          <div class="folder-icon finals-icon">📂</div>
+          <div>
+            <div class="folder-title">Finals Tasks</div>
+            <div class="folder-subtitle">Tasks 1, 2, 3 & 4</div>
+          </div>
+        </div>
+        <div class="folder-preview-img">
+          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=80" alt="Finals Tasks">
+        </div>
+        <div class="task-list">
+          <div class="task-btn" onclick="openModal('ft1')">
+            <div class="task-num finals-num">T1</div>
+            <div class="task-info">
+              <div class="task-name">Finals Task 1</div>
+              <div class="task-meta">Add your description here</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+          <div class="task-btn" onclick="openModal('ft2')">
+            <div class="task-num finals-num">T2</div>
+            <div class="task-info">
+              <div class="task-name">Finals Task 2</div>
+              <div class="task-meta">Add your description here</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+          <div class="task-btn" onclick="openModal('ft3')">
+            <div class="task-num finals-num">T3</div>
+            <div class="task-info">
+              <div class="task-name">Finals Task 3</div>
+              <div class="task-meta">Add your description here</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+          <div class="task-btn" onclick="openModal('ft4')">
+            <div class="task-num finals-num">T4</div>
+            <div class="task-info">
+              <div class="task-name">Finals Task 4</div>
+              <div class="task-meta">Add your description here</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end finals folder-grid -->
   </div>
 </section>
 
@@ -266,6 +362,44 @@ const tasks = {
     desc: 'A Microsoft Excel workbook containing structured student flat data, organized and formatted for data processing and analysis tasks.',
     dl: 'Student_Flat_Data.xlsx',
     screenshot: 'MID-2.png'
+  },
+  // ── Finals Practice Tasks ──
+  fp1: {
+    title: 'Finals Practice Task 1',
+    desc: 'Add your description for Finals Practice Task 1 here.',
+    dl: '#',
+    screenshot: null
+  },
+  fp2: {
+    title: 'Finals Practice Task 2',
+    desc: 'Add your description for Finals Practice Task 2 here.',
+    dl: '#',
+    screenshot: null
+  },
+  // ── Finals Main Tasks ──
+  ft1: {
+    title: 'Finals Task 1',
+    desc: 'Add your description for Finals Task 1 here.',
+    dl: '#',
+    screenshot: null
+  },
+  ft2: {
+    title: 'Finals Task 2',
+    desc: 'Add your description for Finals Task 2 here.',
+    dl: '#',
+    screenshot: null
+  },
+  ft3: {
+    title: 'Finals Task 3',
+    desc: 'Add your description for Finals Task 3 here.',
+    dl: '#',
+    screenshot: null
+  },
+  ft4: {
+    title: 'Finals Task 4',
+    desc: 'Add your description for Finals Task 4 here.',
+    dl: '#',
+    screenshot: null
   }
 };
 
