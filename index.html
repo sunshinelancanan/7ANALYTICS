@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sunshine Lancanan — Portfolio</title>
+<title>Sunshine Lancanan — Data Analytics Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <style>
@@ -22,6 +22,8 @@
   --border: rgba(125,211,252,0.25);
   --glow: 0 0 30px rgba(56,189,248,0.4);
   --glow2: 0 0 60px rgba(56,189,248,0.2);
+  --finals-orange: #f59e0b;
+  --finals-orange2: #f97316;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -136,7 +138,7 @@ nav {
 
 /* Section */
 section { padding: 6rem 2rem; }
-.container { max-width: 1100px; margin: 0 auto; }
+.container { max-width: 1200px; margin: 0 auto; }
 .section-label {
   font-family: 'Space Mono', monospace;
   font-size: 0.75rem; color: var(--sky);
@@ -195,9 +197,12 @@ section { padding: 6rem 2rem; }
   width: 0; transition: width 1.2s ease;
 }
 
-/* Activities Folder Grid */
-#activities { background: var(--navy); }
-.folder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2rem; }
+/* Activities Folder Grid - 3 columns */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
 .folder-card {
   background: var(--glass); border: 1px solid var(--border);
   border-radius: 16px; overflow: hidden;
@@ -211,7 +216,7 @@ section { padding: 6rem 2rem; }
   display: flex; align-items: center; gap: 1rem;
   border-bottom: 1px solid var(--border);
 }
-.folder-preview-img { width: 100%; height: 160px; overflow: hidden; border-bottom: 1px solid var(--border); }
+.folder-preview-img { width: 100%; height: 140px; overflow: hidden; border-bottom: 1px solid var(--border); }
 .folder-preview-img img {
   width: 100%; height: 100%; object-fit: cover;
   filter: brightness(0.85);
@@ -223,34 +228,40 @@ section { padding: 6rem 2rem; }
   font-size: 1.3rem; flex-shrink: 0;
 }
 .folder-title { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 700; color: var(--white); }
-.folder-subtitle { font-size: 0.8rem; color: var(--sky2); }
-.task-list { padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.folder-subtitle { font-size: 0.75rem; color: var(--sky2); margin-top: 2px; }
+.task-list { padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; max-height: 320px; overflow-y: auto; }
+.task-list::-webkit-scrollbar { width: 4px; }
+.task-list::-webkit-scrollbar-track { background: var(--navy3); border-radius: 4px; }
+.task-list::-webkit-scrollbar-thumb { background: var(--sky); border-radius: 4px; }
 .task-btn {
   display: flex; align-items: center; gap: 0.8rem;
-  padding: 0.85rem 1.2rem;
+  padding: 0.75rem 1rem;
   background: rgba(14,165,233,0.07);
   border: 1px solid rgba(125,211,252,0.15);
   border-radius: 10px; cursor: pointer; transition: all 0.3s;
 }
 .task-btn:hover { background: rgba(14,165,233,0.18); border-color: var(--sky); transform: translateX(4px); }
 .task-num {
-  width: 28px; height: 28px;
+  width: 32px; height: 32px;
   background: linear-gradient(135deg, var(--sky), var(--accent2));
-  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
   font-family: 'Orbitron', monospace; font-size: 0.7rem; font-weight: 700;
   color: var(--navy); flex-shrink: 0;
 }
 .task-info { flex: 1; }
-.task-name { font-size: 0.95rem; font-weight: 600; color: var(--white); }
-.task-meta { font-size: 0.75rem; color: var(--sky2); margin-top: 2px; }
+.task-name { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+.task-meta { font-size: 0.7rem; color: var(--sky2); margin-top: 2px; line-height: 1.3; }
 .task-arrow { color: var(--sky); font-size: 1rem; }
 
-/* Finals specific accent */
-.folder-card:last-child .folder-icon {
-  background: linear-gradient(135deg, #f59e0b, #f97316);
+/* Finals section accent */
+.folder-card.finals .folder-icon {
+  background: linear-gradient(135deg, var(--finals-orange), var(--finals-orange2));
 }
-.folder-card:last-child .task-num {
-  background: linear-gradient(135deg, #f59e0b, #f97316);
+.folder-card.finals .task-num {
+  background: linear-gradient(135deg, var(--finals-orange), var(--finals-orange2));
+}
+.folder-card.finals .task-arrow {
+  color: var(--finals-orange2);
 }
 
 /* Modal */
@@ -263,13 +274,13 @@ section { padding: 6rem 2rem; }
 .modal {
   background: linear-gradient(135deg, var(--navy2) 0%, var(--navy3) 100%);
   border: 1px solid var(--border); border-radius: 20px;
-  width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto;
+  width: 100%; max-width: 650px; max-height: 85vh; overflow-y: auto;
 }
 .modal-body { padding: 2rem; }
 .modal-title { font-family: 'Orbitron', monospace; font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; }
-.modal-desc { color: var(--sky3); line-height: 1.8; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.modal-desc { color: var(--sky3); line-height: 1.8; font-size: 0.95rem; margin-bottom: 1.5rem; white-space: pre-wrap; }
 .screenshot-img { width: 100%; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border); }
-.modal-actions { display: flex; gap: 1rem; }
+.modal-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn-download {
   padding: 0.7rem 1.5rem;
   background: linear-gradient(135deg, var(--sky), var(--accent2));
@@ -311,6 +322,9 @@ footer span { color: var(--sky); }
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+@media (max-width: 1000px) {
+  .folder-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 768px) {
   .about-grid, .contact-grid { grid-template-columns: 1fr; }
   .folder-grid { grid-template-columns: 1fr; }
@@ -351,12 +365,12 @@ footer span { color: var(--sky); }
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Microsoft Excel</span>
-    <span>Data Analysis</span><span>Spreadsheets</span><span>Web Design</span>
-    <span>Computer Science</span><span>Problem Solving</span><span>Visual Design</span>
-    <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Microsoft Excel</span>
-    <span>Data Analysis</span><span>Spreadsheets</span><span>Web Design</span>
-    <span>Computer Science</span><span>Problem Solving</span><span>Visual Design</span>
+    <span>SQL</span><span>Power BI</span><span>Excel</span><span>Data Analysis</span>
+    <span>MySQL Workbench</span><span>DAX</span><span>Data Visualization</span>
+    <span>ETL</span><span>Dashboard Design</span><span>Python</span>
+    <span>SQL</span><span>Power BI</span><span>Excel</span><span>Data Analysis</span>
+    <span>MySQL Workbench</span><span>DAX</span><span>Data Visualization</span>
+    <span>ETL</span><span>Dashboard Design</span><span>Python</span>
   </div>
 </div>
 
@@ -371,18 +385,18 @@ footer span { color: var(--sky); }
         <p class="section-label">About Me</p>
         <div class="divider"></div>
         <h3>Hi, I'm Sunshine! ☀️</h3>
-        <p>I'm a passionate Computer Science student with a love for programming and technology. I enjoy building things with code and exploring the intersection of design and data. Currently deepening my skills in web development and data analysis.</p>
+        <p>I'm a passionate Computer Science student with a love for data analytics and technology. I enjoy transforming raw data into meaningful insights, building interactive dashboards, and exploring the intersection of SQL, Power BI, and business intelligence. Currently deepening my skills in data preparation, exploratory analysis, and visual storytelling.</p>
         <div class="info-chips">
           <span class="chip">🎓 CS Student</span>
-          <span class="chip">💻 Programmer</span>
+          <span class="chip">📊 Data Analyst</span>
           <span class="chip">🇵🇭 Philippines</span>
           <span class="chip">🌱 Always Learning</span>
         </div>
         <div class="skill-bars">
-          <div class="skill-bar-item"><label><span>HTML & CSS</span><span>85%</span></label><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
-          <div class="skill-bar-item"><label><span>JavaScript</span><span>70%</span></label><div class="skill-track"><div class="skill-fill" data-width="70"></div></div></div>
-          <div class="skill-bar-item"><label><span>Microsoft Excel</span><span>80%</span></label><div class="skill-track"><div class="skill-fill" data-width="80"></div></div></div>
-          <div class="skill-bar-item"><label><span>Data Analysis</span><span>75%</span></label><div class="skill-track"><div class="skill-fill" data-width="75"></div></div></div>
+          <div class="skill-bar-item"><label><span>SQL</span><span>85%</span></label><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
+          <div class="skill-bar-item"><label><span>Power BI</span><span>80%</span></label><div class="skill-track"><div class="skill-fill" data-width="80"></div></div></div>
+          <div class="skill-bar-item"><label><span>Microsoft Excel</span><span>85%</span></label><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
+          <div class="skill-bar-item"><label><span>Data Analysis</span><span>80%</span></label><div class="skill-track"><div class="skill-fill" data-width="80"></div></div></div>
         </div>
       </div>
     </div>
@@ -396,46 +410,95 @@ footer span { color: var(--sky); }
     <div class="divider"></div>
     <h2 class="section-title">My Tasks & Activities</h2>
     <div class="folder-grid">
-      <!-- Practice Tasks -->
+      
+      <!-- PRACTICE TASKS (Original Excel Tasks) -->
       <div class="folder-card">
         <div class="folder-header">
           <div class="folder-icon">📁</div>
-          <div><div class="folder-title">Practice Tasks</div><div class="folder-subtitle">Tasks 2, 3 & 4</div></div>
+          <div><div class="folder-title">Practice Tasks</div><div class="folder-subtitle">Excel Fundamentals</div></div>
         </div>
         <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Practice"></div>
         <div class="task-list">
-          <div class="task-btn" onclick="openModal('pt2')"><div class="task-num">P2</div><div class="task-info"><div class="task-name">Practice Task 2</div><div class="task-meta">Data Analysis & Visualization · Excel</div></div><span class="task-arrow">→</span></div>
-          <div class="task-btn" onclick="openModal('pt3')"><div class="task-num">P3</div><div class="task-info"><div class="task-name">Practice Task 3</div><div class="task-meta">Excel Functions Practice Workbook</div></div><span class="task-arrow">→</span></div>
-          <div class="task-btn" onclick="openModal('pt4')"><div class="task-num">P4</div><div class="task-info"><div class="task-name">Practice Task 4</div><div class="task-meta">Sales Data Project</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('pt2')"><div class="task-num">P2</div><div class="task-info"><div class="task-name">Data Analysis & Visualization</div><div class="task-meta">Excel · Pivot Tables & Charts</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('pt3')"><div class="task-num">P3</div><div class="task-info"><div class="task-name">Excel Functions Workbook</div><div class="task-meta">45+ Functions · Logical, Text, Date</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('pt4')"><div class="task-num">P4</div><div class="task-info"><div class="task-name">Sales Data Project</div><div class="task-meta">Excel · Sales Reporting</div></div><span class="task-arrow">→</span></div>
         </div>
       </div>
       
-      <!-- Midterm Tasks -->
+      <!-- PRACTICE TASKS 2 (SQL Tasks) -->
       <div class="folder-card">
         <div class="folder-header">
-          <div class="folder-icon">📂</div>
-          <div><div class="folder-title">Midterm Tasks</div><div class="folder-subtitle">Tasks 1 & 2</div></div>
+          <div class="folder-icon">🐬</div>
+          <div><div class="folder-title">SQL Practice Tasks</div><div class="folder-subtitle">MySQL Workbench</div></div>
         </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Midterm"></div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&q=80" alt="SQL"></div>
         <div class="task-list">
-          <div class="task-btn" onclick="openModal('mt1')"><div class="task-num">M1</div><div class="task-info"><div class="task-name">Midterm Task 1</div><div class="task-meta">Bike Sales Data Modeling</div></div><span class="task-arrow">→</span></div>
-          <div class="task-btn" onclick="openModal('mt2')"><div class="task-num">M2</div><div class="task-info"><div class="task-name">Midterm Task 2</div><div class="task-meta">Student Flat Data</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('sql1')"><div class="task-num">S1</div><div class="task-info"><div class="task-name">Data Prep & EDA · Shipments</div><div class="task-meta">Data Cleaning · MySQL · Shipment Analytics</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('sql2')"><div class="task-num">S2</div><div class="task-info"><div class="task-name">Call Center Analytics</div><div class="task-meta">EDA · SQL Queries · Performance Metrics</div></div><span class="task-arrow">→</span></div>
         </div>
       </div>
 
-      <!-- Finals Tasks (NEW - styled like Midterm) -->
+      <!-- MIDTERM TASKS -->
       <div class="folder-card">
         <div class="folder-header">
           <div class="folder-icon">📂</div>
-          <div><div class="folder-title">Finals Tasks</div><div class="folder-subtitle">Tasks 1, 2 & 3</div></div>
+          <div><div class="folder-title">Midterm Tasks</div><div class="folder-subtitle">Data Modeling</div></div>
         </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&q=80" alt="Finals"></div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Midterm"></div>
         <div class="task-list">
-          <div class="task-btn" onclick="openModal('ft1')"><div class="task-num">F1</div><div class="task-info"><div class="task-name">Finals Task 1</div><div class="task-meta">Advanced Dashboard & KPIs</div></div><span class="task-arrow">→</span></div>
-          <div class="task-btn" onclick="openModal('ft2')"><div class="task-num">F2</div><div class="task-info"><div class="task-name">Finals Task 2</div><div class="task-meta">Predictive Sales Modeling</div></div><span class="task-arrow">→</span></div>
-          <div class="task-btn" onclick="openModal('ft3')"><div class="task-num">F3</div><div class="task-info"><div class="task-name">Finals Task 3</div><div class="task-meta">Portfolio Integration Project</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('mt1')"><div class="task-num">M1</div><div class="task-info"><div class="task-name">Bike Sales Data Modeling</div><div class="task-meta">Star Schema · Excel Modeling</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('mt2')"><div class="task-num">M2</div><div class="task-info"><div class="task-name">Student Flat Data</div><div class="task-meta">Data Structuring · Excel</div></div><span class="task-arrow">→</span></div>
         </div>
       </div>
+
+      <!-- FINALS TASK 1: Reading Task on Analytics -->
+      <div class="folder-card finals">
+        <div class="folder-header">
+          <div class="folder-icon">📖</div>
+          <div><div class="folder-title">Finals: Reading Task</div><div class="folder-subtitle">Analytics Foundations</div></div>
+        </div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Reading"></div>
+        <div class="task-list">
+          <div class="task-btn" onclick="openModal('ft_read')"><div class="task-num">FR1</div><div class="task-info"><div class="task-name">What Makes a Data Analyst?</div><div class="task-meta">Article Analysis · SQL Integration · Q&A</div></div><span class="task-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- FINALS TASK 2: Navigating Power BI -->
+      <div class="folder-card finals">
+        <div class="folder-header">
+          <div class="folder-icon">📊</div>
+          <div><div class="folder-title">Finals: Power BI</div><div class="folder-subtitle">Flights Analytics</div></div>
+        </div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Power BI"></div>
+        <div class="task-list">
+          <div class="task-btn" onclick="openModal('ft_pbi1')"><div class="task-num">FR2</div><div class="task-info"><div class="task-name">Navigating Power BI</div><div class="task-meta">Star Schema · DAX · Flight Dashboards</div></div><span class="task-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- FINALS TASK 3: Time Intelligence Functions -->
+      <div class="folder-card finals">
+        <div class="folder-header">
+          <div class="folder-icon">⏱️</div>
+          <div><div class="folder-title">Finals: Time Intelligence</div><div class="folder-subtitle">DAX Analytics</div></div>
+        </div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Time Intelligence"></div>
+        <div class="task-list">
+          <div class="task-btn" onclick="openModal('ft_pbi2')"><div class="task-num">FR3</div><div class="task-info"><div class="task-name">Time Intelligence Functions</div><div class="task-meta">YTD · YoY Growth · DAX Measures</div></div><span class="task-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- FINALS TASK 4: Interactive Reports -->
+      <div class="folder-card finals">
+        <div class="folder-header">
+          <div class="folder-icon">📈</div>
+          <div><div class="folder-title">Finals: Interactive Reports</div><div class="folder-subtitle">Dashboard Design</div></div>
+        </div>
+        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1543286386-713bdd548da7?w=600&q=80" alt="Reports"></div>
+        <div class="task-list">
+          <div class="task-btn" onclick="openModal('ft_pbi3')"><div class="task-num">FR4</div><div class="task-info"><div class="task-name">Designing Interactive Reports</div><div class="task-meta">3-Page Dashboard · Slicers · Publishing</div></div><span class="task-arrow">→</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -464,7 +527,7 @@ footer span { color: var(--sky); }
   </div>
 </section>
 
-<footer>Built with 💙 by <span>Sunshine Lancanan</span> — Computer Science Student &nbsp;|&nbsp; © 2026</footer>
+<footer>Built with 💙 by <span>Sunshine Lancanan</span> — Data Analytics Portfolio &nbsp;|&nbsp; © 2026</footer>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
@@ -474,7 +537,7 @@ footer span { color: var(--sky); }
       <p class="modal-desc" id="modal-desc">Description here.</p>
       <div id="modal-screenshot"></div>
       <div class="modal-actions">
-        <a href="#" id="modal-dl" class="btn-download" target="_blank">⬇ Download Raw File</a>
+        <a href="#" id="modal-dl" class="btn-download" target="_blank">⬇ Download / View File</a>
         <button class="btn-close" onclick="closeModalBtn()">✕ Close</button>
       </div>
     </div>
@@ -483,54 +546,8 @@ footer span { color: var(--sky); }
 
 <script>
 const tasks = {
-  pt2: { title: 'Data Analysis and Visualization', desc: 'A data analysis task using Microsoft Excel where I explored a retailer sales dataset, built pivot tables, and created charts to visualize key business insights.', dl: 'PracticeTask2_LancananSunshine.xlsx', screenshot: 'PT-2.png' },
-  pt3: { title: 'Excel Functions Practice Workbook', desc: 'A Microsoft Excel practice workbook exploring 45+ built-in functions across Logical, Text, Date, Lookup, Math, and Statistical categories.', dl: 'Panlilio&Lancanan.xlsx', screenshot: 'PT-3.png' },
-  pt4: { title: 'Sales Data Project', desc: 'A Microsoft Excel sales project workbook demonstrating data organization, formula application, and structured reporting.', dl: 'SalesProject_Lancanan.xlsx', screenshot: 'PT-4.png' },
-  mt1: { title: 'Bike Sales Data Modeling', desc: 'A Microsoft Excel lab task using a structured star schema with dimension tables for customers, products, states, and countries linked to a central sales fact table.', dl: 'MID_AAB_TASK-LANCANAN&PANLILIO.xlsx', screenshot: 'MID-1.png' },
-  mt2: { title: 'Student Flat Data', desc: 'A Microsoft Excel workbook containing structured student flat data, organized and formatted for data processing and analysis tasks.', dl: 'Student_Flat_Data.xlsx', screenshot: 'MID-2.png' },
-  ft1: { title: 'Advanced Dashboard & KPIs', desc: 'Comprehensive Excel dashboard integrating dynamic KPIs, pivot charts, and slicers. Demonstrates advanced data visualization and interactive business reporting.', dl: 'Finals_Task1_Dashboard_Lancanan.xlsx', screenshot: 'FINALS-1.png' },
-  ft2: { title: 'Predictive Sales Modeling', desc: 'Forecasting project using Excel regression tools and trend functions. Analyzes historical sales patterns to predict next quarter performance.', dl: 'Finals_Task2_PredictiveModel_Lancanan.xlsx', screenshot: 'FINALS-2.png' },
-  ft3: { title: 'Portfolio Integration Project', desc: 'Capstone finals task combining data cleaning, advanced formula logic, and automated reporting. Showcases mastery of Excel as a data analytics tool.', dl: 'Finals_Task3_Capstone_Lancanan.xlsx', screenshot: 'FINALS-3.png' }
-};
-
-function openModal(key) {
-  const t = tasks[key];
-  document.getElementById('modal-title').textContent = t.title;
-  document.getElementById('modal-desc').textContent = t.desc;
-  document.getElementById('modal-dl').href = t.dl;
-  const ssDiv = document.getElementById('modal-screenshot');
-  ssDiv.innerHTML = `<img src="${t.screenshot}" class="screenshot-img" alt="Screenshot" onerror="this.style.display='none'">`;
-  document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModalBtn() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalBtn(); }
-
-// Skill bars reveal
-const skillObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.skill-fill').forEach(fill => { fill.style.width = fill.dataset.width + '%'; });
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.skill-bars').forEach(el => skillObserver.observe(el));
-
-// EmailJS
-emailjs.init("9sMK_0V3sivmDqNEJ");
-function sendEmail() {
-  const name = document.getElementById('from_name').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const status = document.getElementById('email-status');
-  if (!name || !message) { status.style.color = '#f87171'; status.textContent = '⚠ Please fill in all fields.'; return; }
-  status.style.color = 'var(--sky2)'; status.textContent = '⏳ Sending...';
-  emailjs.send("service_7so149f", "template_2de3wxi", { from_name: name, message: message })
-    .then(() => { status.style.color = '#4ade80'; status.textContent = '✅ Message sent!'; document.getElementById('from_name').value = ''; document.getElementById('message').value = ''; })
-    .catch(() => { status.style.color = '#f87171'; status.textContent = '❌ Failed to send.'; });
-}
-</script>
-</body>
-</html>
+  // Original Excel Tasks
+  pt2: { title: '📊 Data Analysis and Visualization', desc: 'A data analysis task using Microsoft Excel where I explored a retailer sales dataset, built pivot tables, and created charts to visualize key business insights like total sales and operating profit across different regions and beverage brands.', dl: 'PracticeTask2_LancananSunshine.xlsx', screenshot: 'PT-2.png' },
+  pt3: { title: '📈 Excel Functions Practice Workbook', desc: 'A Microsoft Excel practice workbook exploring 45+ built-in functions across Logical, Text, Date, Lookup, Math, and Statistical categories — each sheet demonstrating practical use cases and examples.', dl: 'Panlilio&Lancanan.xlsx', screenshot: 'PT-3.png' },
+  pt4: { title: '💰 Sales Data Project', desc: 'A Microsoft Excel sales project workbook created to apply spreadsheet skills in a real-world business context, demonstrating data organization, formula application, and structured reporting using Excel.', dl: 'SalesProject_Lancanan.xlsx', screenshot: 'PT-4.png' },
+  mt1: { title: '🚲 Bike Sales Data Modeling', desc: 'A Microsoft Excel lab task using a structured star schema — with dimension tables for customers, products
