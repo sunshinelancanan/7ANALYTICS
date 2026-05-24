@@ -22,8 +22,6 @@
   --border: rgba(125,211,252,0.25);
   --glow: 0 0 30px rgba(56,189,248,0.4);
   --glow2: 0 0 60px rgba(56,189,248,0.2);
-  --finals-orange: #f59e0b;
-  --finals-orange2: #f97316;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -197,7 +195,7 @@ section { padding: 6rem 2rem; }
   width: 0; transition: width 1.2s ease;
 }
 
-/* Activities Folder Grid - 3 columns */
+/* Activities Folder Grid */
 .folder-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -211,31 +209,24 @@ section { padding: 6rem 2rem; }
 }
 .folder-card:hover { transform: translateY(-6px); box-shadow: var(--glow); }
 .folder-header {
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.2rem;
   background: linear-gradient(135deg, var(--navy3) 0%, rgba(14,165,233,0.2) 100%);
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; align-items: center; gap: 0.8rem;
   border-bottom: 1px solid var(--border);
 }
-.folder-preview-img { width: 100%; height: 140px; overflow: hidden; border-bottom: 1px solid var(--border); }
-.folder-preview-img img {
-  width: 100%; height: 100%; object-fit: cover;
-  filter: brightness(0.85);
-}
 .folder-icon {
-  width: 44px; height: 44px;
+  width: 40px; height: 40px;
   background: linear-gradient(135deg, var(--sky), var(--accent2));
   border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; flex-shrink: 0;
+  font-size: 1.2rem; flex-shrink: 0;
+  box-shadow: var(--glow);
 }
-.folder-title { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 700; color: var(--white); }
-.folder-subtitle { font-size: 0.75rem; color: var(--sky2); margin-top: 2px; }
-.task-list { padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; max-height: 320px; overflow-y: auto; }
-.task-list::-webkit-scrollbar { width: 4px; }
-.task-list::-webkit-scrollbar-track { background: var(--navy3); border-radius: 4px; }
-.task-list::-webkit-scrollbar-thumb { background: var(--sky); border-radius: 4px; }
+.folder-title { font-family: 'Orbitron', monospace; font-size: 0.95rem; font-weight: 700; color: var(--white); }
+.folder-subtitle { font-size: 0.7rem; color: var(--sky2); margin-top: 2px; }
+.task-list { padding: 0.8rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .task-btn {
   display: flex; align-items: center; gap: 0.8rem;
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1rem;
   background: rgba(14,165,233,0.07);
   border: 1px solid rgba(125,211,252,0.15);
   border-radius: 10px; cursor: pointer; transition: all 0.3s;
@@ -252,17 +243,6 @@ section { padding: 6rem 2rem; }
 .task-name { font-size: 0.85rem; font-weight: 600; color: var(--white); }
 .task-meta { font-size: 0.7rem; color: var(--sky2); margin-top: 2px; line-height: 1.3; }
 .task-arrow { color: var(--sky); font-size: 1rem; }
-
-/* Finals section accent */
-.folder-card.finals .folder-icon {
-  background: linear-gradient(135deg, var(--finals-orange), var(--finals-orange2));
-}
-.folder-card.finals .task-num {
-  background: linear-gradient(135deg, var(--finals-orange), var(--finals-orange2));
-}
-.folder-card.finals .task-arrow {
-  color: var(--finals-orange2);
-}
 
 /* Modal */
 .modal-overlay {
@@ -370,7 +350,6 @@ footer span { color: var(--sky); }
     <span>ETL</span><span>Dashboard Design</span><span>Python</span>
     <span>SQL</span><span>Power BI</span><span>Excel</span><span>Data Analysis</span>
     <span>MySQL Workbench</span><span>DAX</span><span>Data Visualization</span>
-    <span>ETL</span><span>Dashboard Design</span><span>Python</span>
   </div>
 </div>
 
@@ -385,7 +364,7 @@ footer span { color: var(--sky); }
         <p class="section-label">About Me</p>
         <div class="divider"></div>
         <h3>Hi, I'm Sunshine! ☀️</h3>
-        <p>I'm a passionate Computer Science student with a love for data analytics and technology. I enjoy transforming raw data into meaningful insights, building interactive dashboards, and exploring the intersection of SQL, Power BI, and business intelligence. Currently deepening my skills in data preparation, exploratory analysis, and visual storytelling.</p>
+        <p>I'm a passionate Computer Science student with a love for data analytics and technology. I enjoy transforming raw data into meaningful insights, building interactive dashboards, and exploring the intersection of SQL, Power BI, and business intelligence.</p>
         <div class="info-chips">
           <span class="chip">🎓 CS Student</span>
           <span class="chip">📊 Data Analyst</span>
@@ -411,13 +390,12 @@ footer span { color: var(--sky); }
     <h2 class="section-title">My Tasks & Activities</h2>
     <div class="folder-grid">
       
-      <!-- PRACTICE TASKS (Original Excel Tasks) -->
+      <!-- Practice Tasks (Excel) -->
       <div class="folder-card">
         <div class="folder-header">
           <div class="folder-icon">📁</div>
           <div><div class="folder-title">Practice Tasks</div><div class="folder-subtitle">Excel Fundamentals</div></div>
         </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Practice"></div>
         <div class="task-list">
           <div class="task-btn" onclick="openModal('pt2')"><div class="task-num">P2</div><div class="task-info"><div class="task-name">Data Analysis & Visualization</div><div class="task-meta">Excel · Pivot Tables & Charts</div></div><span class="task-arrow">→</span></div>
           <div class="task-btn" onclick="openModal('pt3')"><div class="task-num">P3</div><div class="task-info"><div class="task-name">Excel Functions Workbook</div><div class="task-meta">45+ Functions · Logical, Text, Date</div></div><span class="task-arrow">→</span></div>
@@ -425,77 +403,31 @@ footer span { color: var(--sky); }
         </div>
       </div>
       
-      <!-- PRACTICE TASKS 2 (SQL Tasks) -->
-      <div class="folder-card">
-        <div class="folder-header">
-          <div class="folder-icon">🐬</div>
-          <div><div class="folder-title">SQL Practice Tasks</div><div class="folder-subtitle">MySQL Workbench</div></div>
-        </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&q=80" alt="SQL"></div>
-        <div class="task-list">
-          <div class="task-btn" onclick="openModal('sql1')"><div class="task-num">S1</div><div class="task-info"><div class="task-name">Data Prep & EDA · Shipments</div><div class="task-meta">Data Cleaning · MySQL · Shipment Analytics</div></div><span class="task-arrow">→</span></div>
-          <div class="task-btn" onclick="openModal('sql2')"><div class="task-num">S2</div><div class="task-info"><div class="task-name">Call Center Analytics</div><div class="task-meta">EDA · SQL Queries · Performance Metrics</div></div><span class="task-arrow">→</span></div>
-        </div>
-      </div>
-
-      <!-- MIDTERM TASKS -->
+      <!-- Midterm Tasks -->
       <div class="folder-card">
         <div class="folder-header">
           <div class="folder-icon">📂</div>
           <div><div class="folder-title">Midterm Tasks</div><div class="folder-subtitle">Data Modeling</div></div>
         </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Midterm"></div>
         <div class="task-list">
           <div class="task-btn" onclick="openModal('mt1')"><div class="task-num">M1</div><div class="task-info"><div class="task-name">Bike Sales Data Modeling</div><div class="task-meta">Star Schema · Excel Modeling</div></div><span class="task-arrow">→</span></div>
           <div class="task-btn" onclick="openModal('mt2')"><div class="task-num">M2</div><div class="task-info"><div class="task-name">Student Flat Data</div><div class="task-meta">Data Structuring · Excel</div></div><span class="task-arrow">→</span></div>
         </div>
       </div>
 
-      <!-- FINALS TASK 1: Reading Task on Analytics -->
-      <div class="folder-card finals">
+      <!-- Finals Tasks (SAME COLOR AS MIDTERM) -->
+      <div class="folder-card">
         <div class="folder-header">
-          <div class="folder-icon">📖</div>
-          <div><div class="folder-title">Finals: Reading Task</div><div class="folder-subtitle">Analytics Foundations</div></div>
+          <div class="folder-icon">📂</div>
+          <div><div class="folder-title">Finals Tasks</div><div class="folder-subtitle">SQL & Power BI Analytics</div></div>
         </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Reading"></div>
         <div class="task-list">
-          <div class="task-btn" onclick="openModal('ft_read')"><div class="task-num">FR1</div><div class="task-info"><div class="task-name">What Makes a Data Analyst?</div><div class="task-meta">Article Analysis · SQL Integration · Q&A</div></div><span class="task-arrow">→</span></div>
-        </div>
-      </div>
-
-      <!-- FINALS TASK 2: Navigating Power BI -->
-      <div class="folder-card finals">
-        <div class="folder-header">
-          <div class="folder-icon">📊</div>
-          <div><div class="folder-title">Finals: Power BI</div><div class="folder-subtitle">Flights Analytics</div></div>
-        </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Power BI"></div>
-        <div class="task-list">
-          <div class="task-btn" onclick="openModal('ft_pbi1')"><div class="task-num">FR2</div><div class="task-info"><div class="task-name">Navigating Power BI</div><div class="task-meta">Star Schema · DAX · Flight Dashboards</div></div><span class="task-arrow">→</span></div>
-        </div>
-      </div>
-
-      <!-- FINALS TASK 3: Time Intelligence Functions -->
-      <div class="folder-card finals">
-        <div class="folder-header">
-          <div class="folder-icon">⏱️</div>
-          <div><div class="folder-title">Finals: Time Intelligence</div><div class="folder-subtitle">DAX Analytics</div></div>
-        </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Time Intelligence"></div>
-        <div class="task-list">
-          <div class="task-btn" onclick="openModal('ft_pbi2')"><div class="task-num">FR3</div><div class="task-info"><div class="task-name">Time Intelligence Functions</div><div class="task-meta">YTD · YoY Growth · DAX Measures</div></div><span class="task-arrow">→</span></div>
-        </div>
-      </div>
-
-      <!-- FINALS TASK 4: Interactive Reports -->
-      <div class="folder-card finals">
-        <div class="folder-header">
-          <div class="folder-icon">📈</div>
-          <div><div class="folder-title">Finals: Interactive Reports</div><div class="folder-subtitle">Dashboard Design</div></div>
-        </div>
-        <div class="folder-preview-img"><img src="https://images.unsplash.com/photo-1543286386-713bdd548da7?w=600&q=80" alt="Reports"></div>
-        <div class="task-list">
-          <div class="task-btn" onclick="openModal('ft_pbi3')"><div class="task-num">FR4</div><div class="task-info"><div class="task-name">Designing Interactive Reports</div><div class="task-meta">3-Page Dashboard · Slicers · Publishing</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('ft1')"><div class="task-num">F1</div><div class="task-info"><div class="task-name">Data Prep & EDA using SQL</div><div class="task-meta">MySQL · Shipment Data Cleaning</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('ft2')"><div class="task-num">F2</div><div class="task-info"><div class="task-name">Data Preparation & EDA using MySQL</div><div class="task-meta">Call Center Analytics · SQL</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('ft3')"><div class="task-num">F3</div><div class="task-info"><div class="task-name">Reading Task on Analytics</div><div class="task-meta">Data Analyst Skills · SQL Integration</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('ft4')"><div class="task-num">F4</div><div class="task-info"><div class="task-name">Navigating Power BI</div><div class="task-meta">Flight Data · DAX · Dashboards</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('ft5')"><div class="task-num">F5</div><div class="task-info"><div class="task-name">Using Time Intelligence Function</div><div class="task-meta">DAX · YTD · YoY Growth</div></div><span class="task-arrow">→</span></div>
+          <div class="task-btn" onclick="openModal('ft6')"><div class="task-num">F6</div><div class="task-info"><div class="task-name">Designing Interactive Reports in Power BI</div><div class="task-meta">3-Page Dashboard · Publishing</div></div><span class="task-arrow">→</span></div>
         </div>
       </div>
 
@@ -521,6 +453,15 @@ footer span { color: var(--sky); }
         <div class="form-group"><input type="email" id="from_email" placeholder="Your Email"></div>
         <div class="form-group"><textarea id="message" placeholder="Your Message" rows="4"></textarea></div>
         <button class="btn" onclick="sendEmail()">Send Message</button>
+
+<script>
+const tasks = {
+  // Practice Tasks
+  pt2: { title: '📊 Data Analysis and Visualization', desc: 'A data analysis task using Microsoft Excel where I explored a retailer sales dataset, built pivot tables, and created charts to visualize key business insights like total sales and operating profit across different regions and beverage brands.', dl: 'PracticeTask2_LancananSunshine.xlsx', screenshot: 'PT-2.png' },
+  pt3: { title: '📈 Excel Functions Practice Workbook', desc: 'A Microsoft Excel practice workbook exploring 45+ built-in functions across Logical, Text, Date, Lookup, Math, and Statistical categories — each sheet demonstrating practical use cases and examples.', dl: 'Panlilio&Lancanan.xlsx', screenshot: 'PT-3.png' },
+  pt4: { title: '💰 Sales Data Project', desc: 'A Microsoft Excel sales project workbook created to apply spreadsheet skills in a real-world business context, demonstrating data organization, formula application, and structured reporting using Excel.', dl: 'SalesProject_Lancanan.xlsx', screenshot: 'PT-4.png' },
+  
+  // Midterm Tasks
         <p id="email-status" style="margin-top:1rem; font-size:0.9rem;"></p>
       </div>
     </div>
@@ -543,11 +484,12 @@ footer span { color: var(--sky); }
     </div>
   </div>
 </div>
-
-<script>
-const tasks = {
-  // Original Excel Tasks
-  pt2: { title: '📊 Data Analysis and Visualization', desc: 'A data analysis task using Microsoft Excel where I explored a retailer sales dataset, built pivot tables, and created charts to visualize key business insights like total sales and operating profit across different regions and beverage brands.', dl: 'PracticeTask2_LancananSunshine.xlsx', screenshot: 'PT-2.png' },
-  pt3: { title: '📈 Excel Functions Practice Workbook', desc: 'A Microsoft Excel practice workbook exploring 45+ built-in functions across Logical, Text, Date, Lookup, Math, and Statistical categories — each sheet demonstrating practical use cases and examples.', dl: 'Panlilio&Lancanan.xlsx', screenshot: 'PT-3.png' },
-  pt4: { title: '💰 Sales Data Project', desc: 'A Microsoft Excel sales project workbook created to apply spreadsheet skills in a real-world business context, demonstrating data organization, formula application, and structured reporting using Excel.', dl: 'SalesProject_Lancanan.xlsx', screenshot: 'PT-4.png' },
-  mt1: { title: '🚲 Bike Sales Data Modeling', desc: 'A Microsoft Excel lab task using a structured star schema — with dimension tables for customers, products
+  mt1: { title: '🚲 Bike Sales Data Modeling', desc: 'A Microsoft Excel lab task using a structured star schema — with dimension tables for customers, products, states, and countries linked to a central sales fact table. The dataset covers international mountain bike sales across 6 countries, tracking order quantity, unit cost, unit price, profit, and revenue per transaction.', dl: 'MID_AAB_TASK-LANCANAN&PANLILIO.xlsx', screenshot: 'MID-1.png' },
+  mt2: { title: '📚 Student Flat Data', desc: 'A Microsoft Excel workbook containing structured student flat data, organized and formatted for data processing and analysis tasks.', dl: 'Student_Flat_Data.xlsx', screenshot: 'MID-2.png' },
+  
+  // Finals Tasks
+  ft1: { title: '🛳️ Data Prep & EDA using SQL — Shipments Dataset', desc: '📍 The activity focused on utilizing MySQL Workbench to clean and organize the dirty_shipments dataset. This process involved addressing various data issues such as inconsistent formatting, missing information, negative values, and incorrect entries to ensure the dataset\'s reliability. To enhance the dataset\'s usefulness, additional columns were created to calculate shipment and delivery time differences. This step emphasized the significance of maintaining data accuracy, which is crucial for analyzing shipment performance and making informed logistical decisions. The overall goal was to improve data quality for better analysis and reporting.', dl: 'SQL_Shipments_Cleaning_Lancanan.sql', screenshot: 'SQL-1.png' },
+  
+  ft2: { title: '📞 Data Preparation & EDA using MySQL — Call Center Analytics', desc: '📍 This project involved utilizing SQL and MySQL Workbench to effectively clean, organize, and analyze a dataset originating from a call center. The first step was designing a comprehensive database schema to structure the data appropriately, followed by importing the dataset using the Table Data Import Wizard for efficiency and accuracy.\n\n📌 Data cleaning procedures were then carried out, including converting timestamp formats to ensure consistency, correcting invalid or inconsistent scores, and standardizing record entries through various SQL UPDATE statements. To gain insights into the call center operations, exploratory data analysis was conducted by executing multiple SQL queries aimed at identifying peak activity days, assessing service level performance, and calculating key call duration metrics.\n\n📌 Advanced techniques such as grouping and window functions were employed to uncover deeper insights into performance trends and patterns. This process significantly enhanced skills in writing complex SQL queries, managing and maintaining databases, performing data cleaning tasks, and conducting thorough data analysis using MySQL Workbench.', dl: 'SQL_CallCenter_Analytics_Lancanan.sql', screenshot: 'SQL-2.png' },
+  
+  ft3: { title: '📖 Reading Task on Analytics — What Makes a Data Analyst?', desc: '🎯 Finals Essay Task — Assessment on understanding what really matters to become a Data Analyst and how to integrate SQL into Data Analysis.\n\n📌 Instructions: Read the attached article and watch the video before answering the questions.\n• Video: https://youtu.be/hGCKdMsfU7g\n• Article: https://drive.google.com/file/d/1FhanZgD5YFiBJP0088UbEWaN7DEFbgiE/view\n\n📋 QUESTIONS & ANSWERS:\n\n1️⃣ What are the four primary factors that will differentiate a data analyst candidate in 2026?\n→ The four main factors are having domain knowledge, understanding how data systems work, having good communication skills, and having a clear goal. These are important because companies now look beyond just technical skills.\n\n2️⃣ How does domain knowledge provide a competitive advantage over purely technical candidates?\n→ Domain knowledge helps you understand how a business works and what problems to solve. This makes your analysis more useful compared to someone who only knows tools.\n\n3️⃣ What is the "lean tech stack" recommended for a foundational data analyst role?\n→ The basic tools are Excel, SQL, and one visualization tool like Tableau or Power BI. These are enough to start analyzing data and showing results clearly.\n\n4️⃣ Distinguish between "learning projects" and "showing projects."\n→ Learning projects are simple and used to practice tools with clean data. Showing projects are more real-world, using messy data to answer business questions and show your skills.\n\n5️⃣ According to the roadmap, why is Python often deprioritized for mid-career data analyst positions?\n→ Python is not used as much in daily work and is rarely tested in interviews. It\'s more important to focus on tools that help explain data to people, like SQL and dashboards.\n\n6️⃣ Why is establishing the "Business Context" essential for an analyst? What is a Business Context?\n→ Business context means understanding what the data is about, like what each row represents and what problem you are solving. It is important because it helps the analyst ask the right questions and make useful insights, not just
