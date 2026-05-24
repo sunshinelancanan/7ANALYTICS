@@ -7,6 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<style>
+/* additional subtle styling for finals folder consistency */
+.folder-card .folder-icon {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  box-shadow: 0 0 15px rgba(245,158,11,0.4);
+}
+.folder-card .task-num {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #0c1a2e;
+}
+.folder-card .task-arrow {
+  color: #f97316;
+}
+.folder-card .btn-download {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+</style>
 </head>
 <body>
 
@@ -93,13 +110,14 @@
   </div>
 </section>
 
-<!-- ACTIVITIES -->
+<!-- ACTIVITIES (Practice + Midterm + NEW Finals) -->
 <section id="activities">
   <div class="container">
     <p class="section-label reveal">Activities</p>
     <div class="divider reveal"></div>
     <h2 class="section-title reveal">My Tasks & Activities</h2>
     <div class="folder-grid">
+      <!-- Practice Tasks Folder -->
       <div class="folder-card reveal">
         <div class="folder-header">
           <div class="folder-icon">📁</div>
@@ -138,6 +156,8 @@
           </div>
         </div>
       </div>
+      
+      <!-- Midterm Tasks Folder -->
       <div class="folder-card reveal">
         <div class="folder-header">
           <div class="folder-icon">📂</div>
@@ -163,6 +183,46 @@
             <div class="task-info">
               <div class="task-name">Midterm Task 2</div>
               <div class="task-meta">Student Flat Data</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ✨ NEW: FINALS TASKS Folder (exactly like Midterm style) ✨ -->
+      <div class="folder-card reveal">
+        <div class="folder-header">
+          <div class="folder-icon">📂</div>
+          <div>
+            <div class="folder-title">Finals Tasks</div>
+            <div class="folder-subtitle">Tasks 1, 2 & 3</div>
+          </div>
+        </div>
+        <div class="folder-preview-img">
+          <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&q=80" alt="Finals Tasks Preview">
+        </div>
+        <div class="task-list">
+          <div class="task-btn" onclick="openModal('ft1')">
+            <div class="task-num">F1</div>
+            <div class="task-info">
+              <div class="task-name">Finals Task 1</div>
+              <div class="task-meta">Advanced Dashboard & KPIs</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+          <div class="task-btn" onclick="openModal('ft2')">
+            <div class="task-num">F2</div>
+            <div class="task-info">
+              <div class="task-name">Finals Task 2</div>
+              <div class="task-meta">Predictive Sales Modeling</div>
+            </div>
+            <span class="task-arrow">→</span>
+          </div>
+          <div class="task-btn" onclick="openModal('ft3')">
+            <div class="task-num">F3</div>
+            <div class="task-info">
+              <div class="task-name">Finals Task 3</div>
+              <div class="task-meta">Portfolio Integration Project</div>
             </div>
             <span class="task-arrow">→</span>
           </div>
@@ -232,7 +292,9 @@
 </div>
 
 <script>
+// tasks data includes existing PRACTICE, MIDTERM, and NEW FINALS
 const tasks = {
+  // Practice
   pt2: {
     title: 'Data Analysis and Visualization',
     desc: `A data analysis task using Microsoft Excel where I explored a retailer sales dataset, built pivot tables, and created charts to visualize key business insights like total sales and operating profit across different regions and beverage brands.`,
@@ -251,6 +313,7 @@ const tasks = {
     dl: 'SalesProject_Lancanan.xlsx',
     screenshot: 'PT-4.png'
   },
+  // Midterm
   mt1: {
     title: 'Bike Sales Data Modeling',
     desc: 'A Microsoft Excel lab task using a structured star schema — with dimension tables for customers, products, states, and countries linked to a central sales fact table. The dataset covers international mountain bike sales across 6 countries, tracking order quantity, unit cost, unit price, profit, and revenue per transaction.',
@@ -262,18 +325,40 @@ const tasks = {
     desc: 'A Microsoft Excel workbook containing structured student flat data, organized and formatted for data processing and analysis tasks.',
     dl: 'Student_Flat_Data.xlsx',
     screenshot: 'MID-2.png'
+  },
+  // ✨ FINALS TASKS (added exactly like Midterm structure) ✨
+  ft1: {
+    title: 'Advanced Dashboard & KPIs',
+    desc: 'Comprehensive Excel dashboard integrating dynamic KPIs, pivot charts, and slicers. This finals task demonstrates advanced data visualization techniques, real-time performance metrics, and interactive business reporting — consolidating semester-long Excel skills into a professional dashboard.',
+    dl: 'Finals_Task1_Dashboard_Lancanan.xlsx',
+    screenshot: 'FINALS-1.png'
+  },
+  ft2: {
+    title: 'Predictive Sales Modeling',
+    desc: 'Forecasting project using Excel’s regression tools and trend functions. Analyzes historical sales patterns to predict next quarter performance, including confidence intervals, seasonality adjustments, and scenario analysis — highlighting advanced data modeling and business forecasting.',
+    dl: 'Finals_Task2_PredictiveModel_Lancanan.xlsx',
+    screenshot: 'FINALS-2.png'
+  },
+  ft3: {
+    title: 'Portfolio Integration Project',
+    desc: 'Capstone finals task that combines data cleaning, advanced formula logic (INDEX-MATCH, SUMIFS, array formulas), and automated reporting. This project showcases full data workflow — from raw datasets to executive summary, reflecting mastery of Excel as a data analytics tool.',
+    dl: 'Finals_Task3_Capstone_Lancanan.xlsx',
+    screenshot: 'FINALS-3.png'
   }
 };
 
 function openModal(key) {
   const t = tasks[key];
+  if (!t) return;
   document.getElementById('modal-title').textContent = t.title;
   document.getElementById('modal-desc').textContent = t.desc;
   document.getElementById('modal-dl').href = t.dl;
   const ssDiv = document.getElementById('modal-screenshot');
-  ssDiv.innerHTML = t.screenshot
-    ? `<img src="${t.screenshot}" class="screenshot-img" alt="Screenshot">`
-    : `<div class="screenshot-box"><span class="ss-icon">🖼</span><span>Screenshot coming soon</span></div>`;
+  if (t.screenshot) {
+    ssDiv.innerHTML = `<img src="${t.screenshot}" class="screenshot-img" alt="Screenshot" style="max-width:100%; border-radius:12px; margin-bottom:1.5rem; border:1px solid var(--border);">`;
+  } else {
+    ssDiv.innerHTML = `<div class="screenshot-box"><span class="ss-icon">🖼</span><span>Screenshot coming soon</span></div>`;
+  }
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
