@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sunshine Lancanan — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -99,7 +100,7 @@
     <div class="divider reveal"></div>
     <h2 class="section-title reveal">My Tasks & Activities</h2>
 
-    <!-- ── MIDTERM SECTION ── -->
+    <!-- MIDTERM SECTION -->
     <div class="period-label reveal">
       <span class="period-badge midterm-badge">📘 Midterm Tasks Section</span>
     </div>
@@ -110,12 +111,13 @@
         <div class="folder-header">
           <div class="folder-icon">📁</div>
           <div>
-            <div class="folder-title">Midtern Practice Tasks</div>
+            <div class="folder-title">Midterm Practice Tasks</div>
             <div class="folder-subtitle">Tasks 2, 3 & 4</div>
           </div>
         </div>
         <div class="folder-preview-img">
-          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=80" alt="Practice Tasks Preview">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Practice Tasks Preview">
+        </div>
         <div class="task-list">
           <div class="task-btn" onclick="openModal('pt2')">
             <div class="task-num">P2</div>
@@ -154,7 +156,7 @@
           </div>
         </div>
         <div class="folder-preview-img">
-          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80" alt="Midterm Tasks Preview">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Midterm Tasks Preview">
         </div>
         <div class="task-list">
           <div class="task-btn" onclick="openModal('mt1')">
@@ -178,10 +180,10 @@
 
     </div><!-- end midterm folder-grid -->
 
-    <!-- ── SEPARATOR ── -->
+    <!-- SEPARATOR -->
     <div class="section-separator reveal"></div>
 
-    <!-- ── FINALS SECTION ── -->
+    <!-- FINALS SECTION -->
     <div class="period-label reveal">
       <span class="period-badge finals-badge">🏆 Finals Tasks Section</span>
     </div>
@@ -197,7 +199,7 @@
           </div>
         </div>
         <div class="folder-preview-img">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Finals Practice Tasks">
+          <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80" alt="Finals Practice Tasks">
         </div>
         <div class="task-list">
           <div class="task-btn" onclick="openModal('fp1')">
@@ -229,7 +231,7 @@
           </div>
         </div>
         <div class="folder-preview-img">
-          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80" alt="Finals Tasks">
+          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=80" alt="Finals Tasks">
         </div>
         <div class="task-list">
           <div class="task-btn" onclick="openModal('ft1')">
@@ -357,7 +359,6 @@ const tasks = {
     desc: 'A Microsoft Excel workbook containing structured student flat data, organized and formatted for data processing and analysis tasks.',
     dl: 'Task/Midterm_Task.2.pdf',
   },
-  // ── Finals Practice Tasks ──
   fp1: {
     title: 'Finals Practice Task 1',
     desc: 'Prepared and cleaned data in MySQL Workbench by correcting formatting errors and resolving various data handling issues to ensure accuracy and consistency.',
@@ -368,7 +369,6 @@ const tasks = {
     desc: 'Processed and examined call center data using SQL to uncover valuable performance insights through detailed exploration and analysis.',
     dl: 'Task/finals-pt-1.2.pdf',
   },
-  // ── Finals Main Tasks ──
   ft1: {
     title: 'Finals Task 1',
     desc: 'Gained foundational knowledge in data analytics and SQL through hands-on activities and comprehensive assessments.',
@@ -376,7 +376,7 @@ const tasks = {
   },
   ft2: {
     title: 'Finals Task 2',
-    desc: 'ADeveloped comprehensive Power BI flight datasets utilizing star schema design, advanced DAX calculations, and interactive dashboards for insightful data analysis.',
+    desc: 'Developed comprehensive Power BI flight datasets utilizing star schema design, advanced DAX calculations, and interactive dashboards for insightful data analysis.',
     dl: 'Task/Finals_Task-2.pdf',
   },
   ft3: {
@@ -386,7 +386,7 @@ const tasks = {
   },
   ft4: {
     title: 'Finals Task 4',
-    desc: 'ADeveloped comprehensive multi-page Power BI reports featuring interactive visualizations and filter options for enhanced data analysis.',
+    desc: 'Developed comprehensive multi-page Power BI reports featuring interactive visualizations and filter options for enhanced data analysis.',
     dl: 'Task/Finals_Task-4.pdf',
   }
 };
@@ -411,13 +411,11 @@ function closeModal(e) {
   if (e.target === document.getElementById('modal-overlay')) closeModalBtn();
 }
 
-// Scroll reveal
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Skill bars
 const skillObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -430,6 +428,7 @@ const skillObserver = new IntersectionObserver(entries => {
 document.querySelectorAll('.skill-bars').forEach(el => skillObserver.observe(el));
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
 emailjs.init("9sMK_0V3sivmDqNEJ");
 function sendEmail() {
