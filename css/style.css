@@ -772,3 +772,37 @@ footer span {
     gap: 1rem; 
   }
 }
+.period-label {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+.period-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 3rem;
+  border-radius: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.midterm-badge {
+  background: rgba(120,150,176,0.12);
+  border: 1.5px solid var(--sky);
+  color: var(--sky);
+}
+.finals-badge {
+  background: rgba(251,191,36,0.1);
+  border: 1.5px solid #fbbf24;
+  color: #fbbf24;
+}
+.section-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 3rem 0 2.5rem;
+}
