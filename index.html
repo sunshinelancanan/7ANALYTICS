@@ -399,8 +399,8 @@ function openModal(key) {
   document.getElementById('modal-dl').href = t.dl;
   const ssDiv = document.getElementById('modal-screenshot');
   ssDiv.innerHTML = t.screenshot
-    ? `<img src="${t.screenshot}" class="screenshot-img" alt="Screenshot" onerror="this.parentElement.innerHTML='<div class=screenshot-box><span class=ss-icon>🖼</span><span>Place ${t.screenshot} in the same folder</span></div>'">`
-    : `<div class="screenshot-box"><span class="ss-icon">🖼</span><span>No screenshot yet</span></div>`;
+    ? `<img src="${t.screenshot}" class="screenshot-img" alt="Screenshot" onerror="this.parentElement.innerHTML=''">`
+    : ``;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
